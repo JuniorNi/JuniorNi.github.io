@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[Hexo搭建个人博客]]></title>
+      <url>%2F2017%2F03%2F05%2FHexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
+      <content type="text"><![CDATA[前言人啊，总有那么一瞬间，想把自己各种美好与不美好的瞬间，经历与感悟给记录下来。当自己回过头再来看的时候，也许会哭，会笑，酸甜苦辣，各有滋味。当这些点点滴滴汇聚起来之后，估计我会仰天大吼：这一世没白活！ 正文这个周末在网上各种找资料、跨过无数坑之后，个人博客算是初步完成了。 【目标与要求】 美观：对审美有一定要求，有相对不错的外观 功能：起码能分类、打标签、各种时间维度能归档 学习成本：语言、代码相对更容易，学习成本相对较低 时间与金钱成本：最好不用花钱（能省点是一点，我的土壕朋友请无视），不用花太多时间在系统运维 【产品选型】 第三方博客平台，如CSDN、博客园、新浪、豆瓣等。可直接写文章，但模板、样式固定，不算难看也不算好看（简书整体不错，简约风，但是不能带标签，而且鸡汤较多…） 博客工具，部分支持MarkDown语法，免去把文本转化为HTML的痛苦，主要有： wordpress：功能强大，要有主机与域名（免费有限制，正经使用的要花钱购买、备案，还要考虑审批部门的效率…你懂的），折腾太费事费时 ghost：类似wordpress，相对较重，也是动态网站、需要依赖数据库 Jekyll：静态文件生成器，支持Markdown，能部署到github。依赖较多库，windows用户不友好，无本地预览功能 hexo：安装简单，依赖少（仅node），中文支持好（台湾人写的），命令少，易于记忆，可本地实现简单预览，支持markdown。 果断选择了Hexo，下面是介绍下主角： “A fast, simple &amp; powerful blog framework, powered by Node.js.”（官方版）。它是一个Node的静态博客框架，因此没有数据库。可直接部署到github上。好处大大的：省去服务器成本，减少系统运维(系统管理、备份、网络)。 【安装操作】 安装node.js：用来生成静态页面[点击安装node] 注册Github账号：欢迎加入全球最大的同性交友网站ヾ(◍’౪`◍)ﾉﾞ。不限流量、免费提供开放的托管静态页面的网站。 注意！新建的Repo一定要与你的github用户名一模一样，如[username].github.io 安装Git：用于把本地的Hexo内容沟通,传输,部署到Github上。安装教程可参考廖雪峰的博客[点击安装Git] 以下步骤一定要做！ 12$ git config --global user.name "Your Name"$ git config --global user.email "email@example.com" 安装Hexo 在git bash中敲： 1npm install hexo-cli -g 【构建博客】 初始化 创建一个新的文件夹（放你博客的地方），右键点击Git Bash Here，执行： 1hexo init 可以通过以下命令查看是否执行成功 1hexo s 出现以下代码，恭喜成功~，并在浏览器输入：http://localhost:4000/ 进行本地预览（默认端口4000） 12INFO Start processingINFO Hexo is running at http://localhost:4000/. Press Ctrl+C to stop. 配置与部署 我们看到之前创建的博客所在文件夹结构： Blog ｜ ｜－－ .deploy_git ｜－－ node_modules ｜－－ scaffolds ｜－－ source ｜－－ themes ｜－－ _config.yml ｜－－ _gitinore ｜－－ db.json ｜－－ package.json ｜－－ debug.log 现在需要_config.yml与我们github用户名对应的仓库建立联系。打开_config.yml文件，拉到最后对应修改： 123deploy:type: gitrepo: http://github.com/[username]/[username].github.io 并部署： 123hexo clean # 清除缓存hexo generate # 生成静态页面hexo deploy # 上传部署 到现在，我们的“简装房”就有了，后续需要通过主题替换与各种功能设置，来鸟枪换大炮，变成“精装房”(▰˘◡˘▰) ~。 参考资料 Hexo 中文文档 【包涵：文档、API、插件、主题】NexT 使用文档【包含：开始使用、主题配置、第三方服务、内建标签、常见问题】]]></content>
+    </entry>
+
+    
+  
+  
+</search>
