@@ -216,7 +216,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: Georgia;
+  font-family: "Microsoft YaHei", Arial;
 }
 h2,
 h3,
@@ -1698,7 +1698,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #50e3d5;
+  background: #e4a88b;
 }
 .links-of-blogroll {
   font-size: 13px;
