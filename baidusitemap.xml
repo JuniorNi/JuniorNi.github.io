@@ -4,17 +4,22 @@
 
     
   <url>
-    <loc>JuniorNi.github.io/2017/03/08/R%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%EF%BC%8D%E5%8A%A8%E6%80%81%E3%80%81%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%9C%B0%E5%9B%BE%E7%A5%9E%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89%E7%AC%A6%E5%8F%B7%E6%A0%87%E8%AE%B0/</loc>
-    <lastmod>2017-03-08T13:47:55.812Z</lastmod>
+    <loc>JuniorNi.github.io/2017/03/11/matplotlib%E8%BF%90%E7%94%A8%EF%BC%8D%E6%96%9C%E4%B8%8A%E6%8A%9B%E8%BF%90%E5%8A%A8/</loc>
+    <lastmod>2017-03-11T16:04:25.607Z</lastmod>
     <data>
         <display>
-        <title>R数据可视化－动态、交互式地图神器（三）自定义Marker</title>
-        <pubTime>2017-03-08T12:55:54.000Z</pubTime>
+        <title>matplotlib绘图－斜上抛运动</title>
+        <pubTime>2017-03-11T03:21:04.000Z</pubTime>
         
-        <tag>Leaflet</tag>
+        <tag>Python</tag>
+         
+        <tag>matplotlib</tag>
          
          
            
+             
+              <breadCrumb title="Python" url="JuniorNi.github.io/categories/Python/"/>
+          
         </display>
     </data>
     </url>
@@ -22,7 +27,7 @@
     
   <url>
     <loc>JuniorNi.github.io/2017/03/05/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2017-03-07T12:12:47.431Z</lastmod>
+    <lastmod>2017-03-11T13:42:07.914Z</lastmod>
     <data>
         <display>
         <title>Hexo搭建个人博客</title>
@@ -34,6 +39,31 @@
          
          
            
+             
+              <breadCrumb title="Hexo" url="JuniorNi.github.io/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>JuniorNi.github.io/2017/03/08/R%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%EF%BC%8D%E5%8A%A8%E6%80%81%E3%80%81%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%9C%B0%E5%9B%BE%E7%A5%9E%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89%E7%AC%A6%E5%8F%B7%E6%A0%87%E8%AE%B0/</loc>
+    <lastmod>2017-03-11T05:06:48.944Z</lastmod>
+    <data>
+        <display>
+        <title>R数据可视化－动态、交互式地图神器（三）自定义Marker</title>
+        <pubTime>2017-03-08T12:55:54.000Z</pubTime>
+        
+        <tag>R</tag>
+         
+        <tag>Leaflet</tag>
+         
+         
+           
+             
+              <breadCrumb title="R" url="JuniorNi.github.io/categories/R/"/>
+          
         </display>
     </data>
     </url>

@@ -94,7 +94,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JuniorNi, Junior" />
+  <meta name="keywords" content="Python,matplotlib," />
 
 
 
@@ -110,15 +110,22 @@
 
 
 
-<meta name="description" content="不忘初心，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="We are on the way">
-<meta property="og:url" content="JuniorNi.github.io/index.html">
+<meta name="description" content="matplotlib是Python中绘制2D图形使用最多的库，可以很轻松的将数据图形化。本文绘制了斜上抛运动，下面是最终的效果。
+（菲菲老师教得好，幸不辱命 (•‾̑⌣‾̑•)✧˖° ）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="matplotlib绘图－斜上抛运动">
+<meta property="og:url" content="JuniorNi.github.io/2017/03/11/matplotlib运用－斜上抛运动/index.html">
 <meta property="og:site_name" content="We are on the way">
-<meta property="og:description" content="不忘初心，方得始终">
+<meta property="og:description" content="matplotlib是Python中绘制2D图形使用最多的库，可以很轻松的将数据图形化。本文绘制了斜上抛运动，下面是最终的效果。
+（菲菲老师教得好，幸不辱命 (•‾̑⌣‾̑•)✧˖° ）">
+<meta property="og:image" content="http://ommtyfkn6.bkt.clouddn.com/up.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4762054-f358ae7ae1e3e1bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-03-11T16:04:25.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="We are on the way">
-<meta name="twitter:description" content="不忘初心，方得始终">
+<meta name="twitter:title" content="matplotlib绘图－斜上抛运动">
+<meta name="twitter:description" content="matplotlib是Python中绘制2D图形使用最多的库，可以很轻松的将数据图形化。本文绘制了斜上抛运动，下面是最终的效果。
+（菲菲老师教得好，幸不辱命 (•‾̑⌣‾̑•)✧˖° ）">
+<meta name="twitter:image" content="http://ommtyfkn6.bkt.clouddn.com/up.gif">
 
 
 
@@ -146,15 +153,13 @@
 
 
 
-  <link rel="canonical" href="JuniorNi.github.io/"/>
+  <link rel="canonical" href="JuniorNi.github.io/2017/03/11/matplotlib运用－斜上抛运动/"/>
 
 
 
 
 
-  <title>
-  JuniorNi, Junior - We are on the way - 不忘初心，方得始终
-</title>
+  <title> matplotlib绘图－斜上抛运动 | We are on the way </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -189,9 +194,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -330,9 +333,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -362,10 +365,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/11/matplotlib运用－斜上抛运动/" itemprop="url">
-                  matplotlib绘图－斜上抛运动
-                </a>
+                matplotlib绘图－斜上抛运动
               
             
           </h1>
@@ -459,394 +459,112 @@
       
 
       
-        
-          <p>matplotlib是Python中绘制2D图形使用最多的库，可以很轻松的将数据图形化。本文绘制了斜上抛运动，下面是最终的效果。</p>
-<p><img src="http://ommtyfkn6.bkt.clouddn.com/up.gif" style="width: 350px;"/><br>（菲菲老师教得好，幸不辱命 (•‾̑⌣‾̑•)✧˖° ）</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/11/matplotlib运用－斜上抛运动/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>matplotlib是Python中绘制2D图形使用最多的库，可以很轻松的将数据图形化。本文绘制了斜上抛运动，下面是最终的效果。</p>
+<p><img src="http://ommtyfkn6.bkt.clouddn.com/up.gif" style="width: 350px;"><br>（菲菲老师教得好，幸不辱命 (•‾̑⌣‾̑•)✧˖° ）</p>
+<a id="more"></a>
+<h1 id="「准备工作」"><a href="#「准备工作」" class="headerlink" title="「准备工作」"></a>「准备工作」</h1><ol>
+<li><p><strong>导入所需数据包</strong><br>这里的animation.FuncAnimation（fig，update，generate，interval = 5）函数，是用于生成动态图片的。其中fig表示生成的图表对象；generate函数生成数据后传递给update函数更新，这样数据不断更新，图形也不停变化；interval表示时间间隔，设置的值越小，运动速度越快</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> animation	</div><div class="line"><span class="keyword">import</span> math</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设置图形窗口参数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 中文字体路径设置，防止中文不显示</span></div><div class="line">font=FontProperties(fname=<span class="string">r"c:\windows\fonts\simsun.ttc"</span>,size=<span class="number">14</span>)</div><div class="line"></div><div class="line"><span class="comment"># 初始化图形窗口</span></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">111</span>)	</div><div class="line">ax.set_aspect(<span class="string">'equal'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置坐标轴的x,y取值范围</span></div><div class="line">xmin = <span class="number">0</span></div><div class="line">ymin = <span class="number">0</span></div><div class="line">ax = plt.axes(xlim = (xmin, xmax), ylim = (ymin, ymax)) </div><div class="line"></div><div class="line"><span class="comment"># 创建一个圆，圆点在（0,0），半径为1</span></div><div class="line">circle = plt.Circle((xmin, ymin), <span class="number">1</span>)</div><div class="line">ax.add_patch(circle)</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>给定初始参数值</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">g = <span class="number">9.8</span></div><div class="line">u = <span class="number">30</span>	<span class="comment"># 斜上抛的初速度</span></div><div class="line">theta = <span class="number">60</span>	<span class="comment"># 与水平方向的夹角θ</span></div><div class="line">theta_radians = math.radians(theta)	<span class="comment"># 返回一个角度的弧度值</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>计算衍生参数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">t_flight= <span class="number">2</span>*u*math.sin(theta_radians)/g		<span class="comment"># 从A点到B点所需时间</span></div><div class="line">t_max = u*math.sin(theta_radians)/g	<span class="comment"># 上升到最大高度所需时间</span></div><div class="line">xmax = u*math.cos(theta_radians)*t_flight  <span class="comment"># AB两点的距离</span></div><div class="line">ymax = u*math.sin(theta)*t_max - <span class="number">0.5</span>*g*t_max**<span class="number">2</span>  <span class="comment"># 上升的最大高度</span></div></pre></td></tr></table></figure>
+<p> <img src="http://upload-images.jianshu.io/upload_images/4762054-f358ae7ae1e3e1bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 500px;"></p>
+</li>
+</ol>
+<h1 id="「制作动态效果」"><a href="#「制作动态效果」" class="headerlink" title="「制作动态效果」"></a>「制作动态效果」</h1><p>主要利用前面介绍的animation.FuncAnimation函数。于是我们需要构造generate与update函数，让它动起来~</p>
+<p><strong>generate函数</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#产生时间间隔参数（每个数据间隔为0.05），依次传递给updata函数   </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">()</span>:</span></div><div class="line">	t = <span class="number">0</span></div><div class="line">	<span class="keyword">while</span> t &lt; t_flight:</div><div class="line">		t += <span class="number">0.05</span></div><div class="line">		<span class="keyword">yield</span> t</div></pre></td></tr></table></figure></p>
+<p><strong>update函数</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#更新时间间隔参数，从而不断改变圆的圆心坐标位置，让其移动 </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(t)</span>:</span></div><div class="line">    x = u*math.cos(theta_radians)*t</div><div class="line">    y = u*math.sin(theta_radians)*t - <span class="number">0.5</span>*g*t*t</div><div class="line">    circle.center = x, y</div><div class="line">    <span class="keyword">return</span> circle,</div></pre></td></tr></table></figure></p>
+<p><strong>打印相关信息</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Print</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> (<span class="string">u"初始速度（米/秒）:"</span>,u)</div><div class="line">    <span class="keyword">print</span> (<span class="string">u"发射角度（度）"</span>,theta)</div><div class="line">    <span class="keyword">print</span> (<span class="string">u"飞行总时间（秒）"</span>,t_flight)</div><div class="line">    <span class="keyword">print</span> (<span class="string">u"飞行距离（米）"</span>,xmax)</div></pre></td></tr></table></figure></p>
+<p><strong>动画函数</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">anim = animation.FuncAnimation(fig, update,generate,interval=<span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="comment"># 附加信息</span></div><div class="line">anim= animation.FuncAnimation(fig, update,generate,interval=<span class="number">10</span>)</div><div class="line">plt.title(<span class="string">u'导弹发射轨迹'</span>,fontproperties=font)</div><div class="line">plt.xlabel(<span class="string">u'水平距离(米)'</span>,fontproperties=font)</div><div class="line">plt.ylabel(<span class="string">u'导弹运行高度（米）'</span>,fontproperties=font)</div><div class="line">plt.show()</div><div class="line">Print()</div></pre></td></tr></table></figure></p>
+<p>最后就能看到首页的动态图了 ヾ(◍’౪`◍)ﾉﾞ</p>
+
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junior Ni">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/juanfu3.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="We are on the way">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/" itemprop="url">
-                  R数据可视化－动态、交互式地图神器（三）自定义Marker
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T20:55:54+08:00">
-                2017-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/R/" itemprop="url" rel="index">
-                    <span itemprop="name">R</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
-
+            <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/" class="leancloud_visitors" data-flag-title="R数据可视化－动态、交互式地图神器（三）自定义Marker">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          <h1 id="Leaflet-LeafletCN-系列"><a href="#Leaflet-LeafletCN-系列" class="headerlink" title="Leaflet/LeafletCN 系列"></a>Leaflet/LeafletCN 系列</h1><p><a href="http://www.jianshu.com/p/5211d151308f">R数据可视化－动态、交互式地图神器（一）概述与实现</a><br><a href="http://www.jianshu.com/p/c74656950836">R数据可视化－动态、交互式地图神器（二）地图与定位</a>   </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/03/05/Hexo搭建个人博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junior Ni">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/juanfu3.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="We are on the way">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/Hexo搭建个人博客/" itemprop="url">
-                  Hexo搭建个人博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T19:21:48+08:00">
-                2017-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/05/Hexo搭建个人博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/Hexo搭建个人博客/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/05/Hexo搭建个人博客/" class="leancloud_visitors" data-flag-title="Hexo搭建个人博客">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" rel="gallery_cj05fz5fs0000iscpbn5inmwb"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" itemprop="contentUrl"/>
+              <a href="/2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/" rel="next" title="R数据可视化－动态、交互式地图神器（三）自定义Marker">
+                <i class="fa fa-chevron-left"></i> R数据可视化－动态、交互式地图神器（三）自定义Marker
               </a>
             
-          
+          </div>
 
-          
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
           </div>
         </div>
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>人啊，总有那么一瞬间，想把自己各种美好与不美好的瞬间，经历与感悟给记录下来。当自己回过头再来看的时候，也许会哭，会笑，酸甜苦辣，各有滋味。当这些点点滴滴汇聚起来之后，估计我会仰天大吼：这一世没白活！<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/05/Hexo搭建个人博客/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/11/matplotlib运用－斜上抛运动/"
+     data-title="matplotlib绘图－斜上抛运动"
+     data-content=""
+     data-url="JuniorNi.github.io/2017/03/11/matplotlib运用－斜上抛运动/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
           
           </div>
@@ -856,6 +574,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/11/matplotlib运用－斜上抛运动/"
+           data-title="matplotlib绘图－斜上抛运动" data-url="JuniorNi.github.io/2017/03/11/matplotlib运用－斜上抛运动/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -875,8 +601,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/juanfu3.jpeg"
@@ -976,6 +711,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#「准备工作」"><span class="nav-number">1.</span> <span class="nav-text">「准备工作」</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#「制作动态效果」"><span class="nav-number">2.</span> <span class="nav-text">「制作动态效果」</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1103,6 +854,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

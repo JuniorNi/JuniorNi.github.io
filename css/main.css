@@ -216,7 +216,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: "Microsoft YaHei", Arial;
+  font-family: Neucha;
 }
 h2,
 h3,
@@ -277,13 +277,13 @@ p {
   margin: 0 0 25px 0;
 }
 a {
-  color: #0593d3;
+  color: #555;
   text-decoration: none;
   border-bottom: 1px solid #999;
   word-wrap: break-word;
 }
 a:hover {
-  color: #0477ab;
+  color: #222;
   border-bottom-color: #0477ab;
 }
 blockquote {
@@ -1012,7 +1012,7 @@ pre .javascript .function {
   line-height: 36px;
   font-size: 20px;
   font-weight: normal;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Neucha', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .site-subtitle {
   margin-top: 10px;
@@ -1100,7 +1100,7 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Neucha', 'Neucha', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 @media (max-width: 767px) {
   .post-body {
@@ -1365,7 +1365,7 @@ pre .javascript .function {
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
   color: #999;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Neucha', 'Neucha', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
   text-align: center;
 }
@@ -1436,7 +1436,7 @@ pre .javascript .function {
   margin-top: 50px;
 }
 .post-button .btn {
-  color: #0593d3;
+  color: #555;
   font-size: 14px;
   background: transparent;
   border-radius: 0;
@@ -1477,11 +1477,11 @@ pre .javascript .function {
   display: block;
   line-height: 25px;
   font-size: 14px;
-  color: #0593d3;
+  color: #555;
   border-bottom: none;
 }
 .post-nav-item a:hover {
-  color: #0477ab;
+  color: #222;
   border-bottom: none;
 }
 .post-nav-item a:active {
@@ -1698,7 +1698,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffa6e9;
+  background: #ffa822;
 }
 .links-of-blogroll {
   font-size: 13px;
