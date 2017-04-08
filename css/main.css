@@ -185,7 +185,7 @@ th {
 }
 body {
   position: relative;
-  font-family: "Microsoft YaHei";
+  font-family: Neucha, "Microsoft YaHei";
   font-size: 15px;
   line-height: 2;
   color: #555;
@@ -1704,7 +1704,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #87c4b3;
+  background: #1436ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2672,12 +2672,12 @@ hr {
 }
 @media (max-width: 767px) {
   .posts-expand .post-title {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 @media (min-width: 1600px) {
   .posts-expand .post-title {
-    font-size: 28px;
+    font-size: 32px;
   }
 }
 .posts-expand .post-title:hover:before {
