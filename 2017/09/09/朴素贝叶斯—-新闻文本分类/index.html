@@ -110,20 +110,17 @@
 
 
 
-<meta name="description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。
-「Python实现」导入停用词导入停用词库，同时使用strip()方法剔除不需要的空白符，包括（&amp;#39;\n&amp;#39;, &amp;#39;\r&amp;#39;, &amp;">
+<meta name="description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="朴素贝叶斯-新闻文本分类">
 <meta property="og:url" content="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/index.html">
 <meta property="og:site_name" content="We are on the way">
-<meta property="og:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。
-「Python实现」导入停用词导入停用词库，同时使用strip()方法剔除不需要的空白符，包括（&amp;#39;\n&amp;#39;, &amp;#39;\r&amp;#39;, &amp;">
+<meta property="og:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-09T13:24:52.701Z">
+<meta property="og:updated_time" content="2017-09-09T13:27:23.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="朴素贝叶斯-新闻文本分类">
-<meta name="twitter:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。
-「Python实现」导入停用词导入停用词库，同时使用strip()方法剔除不需要的空白符，包括（&amp;#39;\n&amp;#39;, &amp;#39;\r&amp;#39;, &amp;">
+<meta name="twitter:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -461,7 +458,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj7dcf9pd001324cph2zo0bkq"
+                 href="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj7dci8f20014wccpvnc4ua20"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" itemprop="contentUrl"/>
               </a>
@@ -475,6 +472,7 @@
 
       
         <h1 id="「朴素贝叶斯」"><a href="#「朴素贝叶斯」" class="headerlink" title="「朴素贝叶斯」"></a>「朴素贝叶斯」</h1><p>具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： <strong>朴素贝叶斯 = 条件独立假设 + 贝叶斯方法</strong>。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。</p>
+<a id="more"></a>
 <h1 id="「Python实现」"><a href="#「Python实现」" class="headerlink" title="「Python实现」"></a>「Python实现」</h1><h2 id="导入停用词"><a href="#导入停用词" class="headerlink" title="导入停用词"></a>导入停用词</h2><p>导入停用词库，同时使用<code>strip()</code>方法剔除不需要的空白符，包括<code>（&#39;\n&#39;, &#39;\r&#39;, &#39;\t&#39;, &#39; &#39;）</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_word_set</span><span class="params">(words_file)</span>:</span></div><div class="line">    words_set = set()</div><div class="line">    <span class="keyword">with</span> codecs.open(words_file,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</div><div class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> fp:</div><div class="line">            word = line.strip()</div><div class="line">            <span class="keyword">if</span> len(word) &gt; <span class="number">0</span> <span class="keyword">and</span> word <span class="keyword">not</span> <span class="keyword">in</span> words_set:</div><div class="line">                words_set.add(word)</div><div class="line">    <span class="keyword">return</span> words_set</div></pre></td></tr></table></figure></p>
 <h2 id="文本处理，样本生成"><a href="#文本处理，样本生成" class="headerlink" title="文本处理，样本生成"></a>文本处理，样本生成</h2><p>每个新闻文本txt文件在各自所属类别的文件夹中，结构如下：</p>
 <blockquote>
