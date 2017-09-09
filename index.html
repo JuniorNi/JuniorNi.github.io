@@ -341,6 +341,211 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junior Ni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/juanfu3.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="We are on the way">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/09/朴素贝叶斯—-新闻文本分类/" itemprop="url">
+                  朴素贝叶斯-新闻文本分类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T17:47:21+08:00">
+                2017-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/09/朴素贝叶斯—-新闻文本分类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/09/朴素贝叶斯—-新闻文本分类/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/09/09/朴素贝叶斯—-新闻文本分类/" class="leancloud_visitors" data-flag-title="朴素贝叶斯-新闻文本分类">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj7dcf9pd001324cph2zo0bkq"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        
+          
+            <h1 id="「朴素贝叶斯」"><a href="#「朴素贝叶斯」" class="headerlink" title="「朴素贝叶斯」"></a>「朴素贝叶斯」</h1><p>具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： <strong>朴素贝叶斯 = 条件独立假设 + 贝叶斯方法</strong>。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。</p>
+<h1 id="「Python实现」"><a href="#「Python实现」" class="headerlink" title="「Python实现」"></a>「Python实现」</h1><h2 id="导入停用词"><a href="#导入停用词" class="headerlink" title="导入停用词"></a>导入停用词</h2><p>导入停用词库，同时使用<code>strip()</code>方法剔除不需要的空白符，包括<code>（&#39;\n&#39;, &#39;\r&#39;, &#39;\t&#39;, &#39; &#39;）</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_word_set</span><span class="params">(words_file)</span>:</span></div><div class="line">    words_set = set()</div><div class="line">    <span class="keyword">with</span> codecs.open(words_file,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</div><div class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> fp:</div><div class="line">            word = line.strip()</div><div class="line">            <span class="keyword">if</span> len(word) &gt; <span class="number">0</span> <span class="keyword">and</span> word <span class="keyword">not</span> <span class="keyword">in</span> words_set:</div><div class="line">                words_set.add(word)</div><div class="line">    <span class="keyword">return</span> words_set</div></pre></td></tr></table></figure></p>
+<h2 id="文本处理，样本生成"><a href="#文本处理，样本生成" class="headerlink" title="文本处理，样本生成"></a>文本处理，样本生成</h2><p>每个新闻文本txt文件在各自所属类别的文件夹中，结构如下：</p>
+<blockquote>
+<p>“folder_path”<br>　｜<br>　｜－－ C000008 －－ 1.txt / 2.txt / … / 19.txt<br>　｜－－ C000010<br>　｜－－ C000013<br>　｜－－ …<br>　｜－－ C000024</p>
+</blockquote>
+<p>这里使用<code>os.listdir()</code>读取指定目录下的所有文件夹名（即分类类别），遍历各自文件夹（类别）内的文本文件，对每一个txt文件进行文本切词，同时利用<code>zip()</code>函数使每个新闻文本与所属类别一一对应，一共有90条数据。</p>
+<p>为了随机抽取训练与测试数据集，用<code>random.shuffle()</code>打乱顺序，并选取20%的数据用于测试，同时把特征数据与类别数据各自分开。</p>
+<p>最后对训练数据集中的词语进行词频统计。这里有使用<code>sorted()</code>函数进行排序，方法为<code>sorted(iterable, cmp = None, key = None, reverse = False)</code>，其中参数含义如下：</p>
+<ul>
+<li><strong>iterable</strong>：是可迭代类型（我这里的可迭代类型为字典）</li>
+<li><strong>cmp</strong>：用于比较的函数，比较什么由key决定（这里没用到）</li>
+<li><strong>key</strong>：用列表元素的某个属性或函数进行作为关键字（这里使用字典中的“值”大小作为关键字排序）</li>
+<li><strong>reverse</strong>：排序规则，True为降序（False为升序）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_processing</span><span class="params">(folder_path, test_size = <span class="number">0.2</span>)</span>:</span></div><div class="line">    folder_list = os.listdir(folder_path)</div><div class="line">    data_list = []</div><div class="line">    class_list = []</div><div class="line">    <span class="comment"># 遍历文件夹</span></div><div class="line">    <span class="keyword">for</span> folder <span class="keyword">in</span> folder_list:</div><div class="line">        new_folder_path = os.path.join(folder_path,folder)</div><div class="line">        files = os.listdir(new_folder_path)</div><div class="line">        j = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">            <span class="keyword">if</span> j &gt; <span class="number">100</span>: <span class="comment"># 防止内存爆掉</span></div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">with</span> codecs.open(os.path.join(new_folder_path, file), <span class="string">'r'</span>, <span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</div><div class="line">                raw = fp.read()</div><div class="line">                word_cut = jieba.cut(raw, cut_all = <span class="keyword">False</span>)</div><div class="line">                word_list = list(word_cut)</div><div class="line">                data_list.append(word_list) <span class="comment"># 训练集</span></div><div class="line">                class_list.append(folder)   <span class="comment"># 类别</span></div><div class="line">                j += <span class="number">1</span>      </div><div class="line"></div><div class="line">    <span class="comment"># 划分训练集和测试集</span></div><div class="line">    data_class_list = list(zip(data_list, class_list))</div><div class="line">    random.shuffle(data_class_list)    <span class="comment"># 打乱顺序</span></div><div class="line">    index = int(len(data_class_list) * test_size) + <span class="number">1</span>   <span class="comment"># 抽取测试数据集的占比</span></div><div class="line">    train_list = data_class_list[index:]</div><div class="line">    test_list = data_class_list[:index]</div><div class="line">    train_data_list,train_class_list = zip(*train_list) <span class="comment"># 特征与标签</span></div><div class="line">    test_data_list,test_class_list = zip(*test_list) </div><div class="line"></div><div class="line">    <span class="comment"># 统计词频</span></div><div class="line">    all_words_dict = &#123;&#125;</div><div class="line">    <span class="keyword">for</span> word_list <span class="keyword">in</span> train_data_list:</div><div class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> word_list:</div><div class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> all_words_dict:</div><div class="line">                all_words_dict[word] += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                all_words_dict[word] = <span class="number">1</span></div><div class="line">            </div><div class="line">    <span class="comment"># 降序排序（key函数）</span></div><div class="line">    all_words_tuple_list = sorted(all_words_dict.items(),key = <span class="keyword">lambda</span> f:f[<span class="number">1</span>], reverse = <span class="keyword">True</span>)</div><div class="line">    all_words_list = list(zip(*all_words_tuple_list))[<span class="number">0</span>]</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> all_words_list, train_data_list, test_data_list, train_class_list, test_class_list</div></pre></td></tr></table></figure>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>这里我们仅选取词频坐高的1000个特征词（维度），并剔除数字与停用词。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">words_dict</span><span class="params">(all_words_list,deleteN,stopwords_set=set<span class="params">()</span>)</span>:</span></div><div class="line">    feature_words = []</div><div class="line">    n = <span class="number">1</span></div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(deleteN,len(all_words_list),<span class="number">1</span>):</div><div class="line">        <span class="keyword">if</span> n &gt; <span class="number">1000</span>:    <span class="comment"># 最多取1000个维度</span></div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> all_words_list[t].isdigit() <span class="keyword">and</span> all_words_list[t] <span class="keyword">not</span> <span class="keyword">in</span> stopwords_set <span class="keyword">and</span> <span class="number">1</span> &lt; len(all_words_list[t]) &lt; <span class="number">5</span>:</div><div class="line">            feature_words.append(all_words_list[t])</div><div class="line">            n += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> feature_words</div></pre></td></tr></table></figure></p>
+<h2 id="用选取的特征词构建0-1矩阵"><a href="#用选取的特征词构建0-1矩阵" class="headerlink" title="用选取的特征词构建0-1矩阵"></a>用选取的特征词构建0-1矩阵</h2><p>对训练数据集train_data_list中每篇切完词之后的文档构建特征向量（由上述1000个特征词组成），若出现则取值为1，否则为0。于是90篇文章构建出了[90,1000]维度的0-1矩阵（其中71行为训练数据，19行为测试数据）。</p>
+<p>训练集如下：<br><img src="http://upload-images.jianshu.io/upload_images/4762054-ecf24ef5e855b0f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 500px;"></p>
+<p>0-1矩阵如下：<br><img src="http://upload-images.jianshu.io/upload_images/4762054-a40a8ecd7497d7db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 400px;"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_features</span><span class="params">(train_data_list, test_data_list, feature_words)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">text_features</span><span class="params">(text,feature_words)</span>:</span></div><div class="line">        <span class="comment"># text = train_data_list[0]</span></div><div class="line">        text_words = set(text)</div><div class="line">        features = [<span class="number">1</span> <span class="keyword">if</span> word <span class="keyword">in</span> text_words <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> word <span class="keyword">in</span> feature_words]</div><div class="line">        <span class="keyword">return</span> features</div><div class="line">        </div><div class="line">    <span class="comment"># 0,1的矩阵（1000列-维度）    </span></div><div class="line">    train_feature_list = [text_features(text, feature_words) <span class="keyword">for</span> text <span class="keyword">in</span> train_data_list]</div><div class="line">    test_feature_list = [text_features(text, feature_words) <span class="keyword">for</span> text <span class="keyword">in</span> test_data_list]</div><div class="line">    <span class="keyword">return</span> train_feature_list,test_feature_list</div></pre></td></tr></table></figure>
+<h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><p>这里使用开源sklearn库中的朴素贝叶斯分类器，输入参数分别为训练集的0-1特征矩阵（train_feature_list）与训练集分类（train_class_list），然后对测试数据的输出与真实结果进行比较，得到准确度为0.68</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_classifier</span><span class="params">(train_feature_list,test_feature_list,train_class_list,test_class_list)</span>:</span></div><div class="line">    <span class="comment"># sklearn多项式分类器</span></div><div class="line">    classifier = MultinomialNB().fit(train_feature_list,train_class_list)   <span class="comment"># 特征向量与类别</span></div><div class="line">    test_accuracy = classifier.score(test_feature_list,test_class_list)</div><div class="line">    <span class="keyword">return</span> test_accuracy</div></pre></td></tr></table></figure>
+<p>这里我们仅选取词频最高的1000个作为特征向量，不妨尝试下选取其他的关键字作为特征向量，发现准确率都在0.63以上，分类效果还算可以，见下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-a1c4d9a911f69407.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="comment"># 文本预处理（分词、划分训练与测试集、排序）</span></div><div class="line">    folder_path = <span class="string">'...'</span></div><div class="line">    all_words_list, train_data_list, test_data_list, train_class_list, test_class_list = text_processing(folder_path, test_size = <span class="number">0.2</span>)</div><div class="line">    </div><div class="line">    <span class="comment"># stopwords_set</span></div><div class="line">    stopwords_file = <span class="string">'...'</span></div><div class="line">    stopwords_set = make_word_set(stopwords_file)</div><div class="line"></div><div class="line">    <span class="comment"># 特征提取与分类</span></div><div class="line">    deleteNs = range(<span class="number">0</span>,<span class="number">1000</span>,<span class="number">20</span>)</div><div class="line">    test_accuracy_list = []</div><div class="line">    <span class="keyword">for</span> deleteN <span class="keyword">in</span> deleteNs:</div><div class="line">        <span class="comment"># 选取1000个特征</span></div><div class="line">        feature_words = words_dict(all_words_list,deleteN,stopwords_set)</div><div class="line">        <span class="comment"># 计算特征向量</span></div><div class="line">        train_feature_list, test_feature_list = text_features(train_data_list,test_data_list,feature_words)</div><div class="line">        <span class="comment"># sklearn分类器计算准确度</span></div><div class="line">        test_accuracy = text_classifier(train_feature_list,test_feature_list,train_class_list,test_class_list)</div><div class="line">        <span class="comment"># 不同特征向量下的准确度</span></div><div class="line">        test_accuracy_list.append(test_accuracy)</div><div class="line">    print(test_accuracy_list)</div><div class="line"></div><div class="line">    <span class="comment"># 结果评价</span></div><div class="line">    plt.figure()</div><div class="line">    plt.plot(deleteNs,test_accuracy_list)</div><div class="line">    plt.title(<span class="string">'Relationship of deleteNs and test_accuracy'</span>)</div><div class="line">    plt.xlabel(<span class="string">'deleteNs'</span>)</div><div class="line">    plt.ylabel(<span class="string">'test_accuracy'</span>)</div><div class="line">    plt.savefig(<span class="string">'result.png'</span>,dpi = <span class="number">100</span>)</div><div class="line">    plt.show()</div></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
+<p><a href="http://blog.csdn.net/longxinchen_ml/article/details/50597149" target="_blank" rel="external">用朴素贝叶斯进行文本分类</a><br><a href="http://www.ruanyifeng.com/blog/2013/12/naive_bayes_classifier.html" target="_blank" rel="external">朴素贝叶斯分类器的应用</a> </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/08/26/《小岛经济学》读书笔记（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1301,7 +1506,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://upload-images.jianshu.io/upload_images/4762054-ff1ce44e23c309b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj6td8ekx000oqwcp9jzgay3n"
+                 href="http://upload-images.jianshu.io/upload_images/4762054-ff1ce44e23c309b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj7dcf9p0000o24cp50k8swoe"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://upload-images.jianshu.io/upload_images/4762054-ff1ce44e23c309b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" itemprop="contentUrl"/>
               </a>
@@ -1656,7 +1861,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://upload-images.jianshu.io/upload_images/4762054-170d0f5bb5f7515a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj6td8ekg000hqwcpxhpzawda"
+                 href="http://upload-images.jianshu.io/upload_images/4762054-170d0f5bb5f7515a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj7dcf9ov000j24cpqbjh9xlk"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://upload-images.jianshu.io/upload_images/4762054-170d0f5bb5f7515a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" itemprop="contentUrl"/>
               </a>
@@ -1837,7 +2042,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ommtyfkn6.bkt.clouddn.com/chord.gif" rel="gallery_cj6td8ek7000eqwcpm6lp6rk1"
+                 href="http://ommtyfkn6.bkt.clouddn.com/chord.gif" rel="gallery_cj7dcf9op000e24cp5afogj2z"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ommtyfkn6.bkt.clouddn.com/chord.gif" itemprop="contentUrl"/>
               </a>
@@ -1855,171 +2060,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/25/D3学习系列（一） 基础知识与柱形图绘制/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/03/18/Semantic-UI上手/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Junior Ni">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/juanfu3.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="We are on the way">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/18/Semantic-UI上手/" itemprop="url">
-                  Semantic UI上手
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T22:20:33+08:00">
-                2017-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Web开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/18/Semantic-UI上手/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/18/Semantic-UI上手/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/18/Semantic-UI上手/" class="leancloud_visitors" data-flag-title="Semantic UI上手">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://upload-images.jianshu.io/upload_images/4762054-abb3edf07ba4b920.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>最近使用<code>Semantic UI</code>这一CSS框架实现了上图的苹果静态官网首页，我只想说，要不要这么简单粗暴！它省去了你大量时间与经历，不必去重复造轮子。但如此的便利必然是付出了某种你还未发现的代价……</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/18/Semantic-UI上手/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2104,7 +2144,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2115,7 +2155,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2126,7 +2166,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2228,7 +2268,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共13.3k字</span>
+  <span class="post-count">博客全站共14.5k字</span>
 </div>
 
 <script>

@@ -94,7 +94,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo,NexT," />
+  <meta name="keywords" content="Python,机器学习,NLP," />
 
 
 
@@ -110,18 +110,21 @@
 
 
 
-<meta name="description" content="前言人啊，总有那么一瞬间，想把自己各种美好与不美好的瞬间，经历与感悟给记录下来。当自己回过头再来看的时候，也许会哭，会笑，酸甜苦辣，各有滋味。当这些点点滴滴汇聚起来之后，估计我会仰天大吼：这一世没白活！">
+<meta name="description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。
+「Python实现」导入停用词导入停用词库，同时使用strip()方法剔除不需要的空白符，包括（&amp;#39;\n&amp;#39;, &amp;#39;\r&amp;#39;, &amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo搭建个人博客">
-<meta property="og:url" content="JuniorNi.github.io/2017/03/05/Hexo搭建个人博客/index.html">
+<meta property="og:title" content="朴素贝叶斯-新闻文本分类">
+<meta property="og:url" content="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/index.html">
 <meta property="og:site_name" content="We are on the way">
-<meta property="og:description" content="前言人啊，总有那么一瞬间，想把自己各种美好与不美好的瞬间，经历与感悟给记录下来。当自己回过头再来看的时候，也许会哭，会笑，酸甜苦辣，各有滋味。当这些点点滴滴汇聚起来之后，估计我会仰天大吼：这一世没白活！">
-<meta property="og:image" content="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg">
-<meta property="og:updated_time" content="2017-03-25T08:24:32.636Z">
+<meta property="og:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。
+「Python实现」导入停用词导入停用词库，同时使用strip()方法剔除不需要的空白符，包括（&amp;#39;\n&amp;#39;, &amp;#39;\r&amp;#39;, &amp;">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-09T13:24:52.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo搭建个人博客">
-<meta name="twitter:description" content="前言人啊，总有那么一瞬间，想把自己各种美好与不美好的瞬间，经历与感悟给记录下来。当自己回过头再来看的时候，也许会哭，会笑，酸甜苦辣，各有滋味。当这些点点滴滴汇聚起来之后，估计我会仰天大吼：这一世没白活！">
-<meta name="twitter:image" content="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg">
+<meta name="twitter:title" content="朴素贝叶斯-新闻文本分类">
+<meta name="twitter:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。
+「Python实现」导入停用词导入停用词库，同时使用strip()方法剔除不需要的空白符，包括（&amp;#39;\n&amp;#39;, &amp;#39;\r&amp;#39;, &amp;">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -149,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="JuniorNi.github.io/2017/03/05/Hexo搭建个人博客/"/>
+  <link rel="canonical" href="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/"/>
 
 
 
 
 
-  <title> Hexo搭建个人博客 | We are on the way </title>
+  <title> 朴素贝叶斯-新闻文本分类 | We are on the way </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -340,7 +343,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/03/05/Hexo搭建个人博客/">
+    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junior Ni">
@@ -361,7 +364,7 @@
             
             
               
-                Hexo搭建个人博客
+                朴素贝叶斯-新闻文本分类
               
             
           </h1>
@@ -376,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T19:21:48+08:00">
-                2017-03-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T17:47:21+08:00">
+                2017-09-09
               </time>
             
 
@@ -399,8 +402,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -417,8 +420,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/05/Hexo搭建个人博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/Hexo搭建个人博客/" itemprop="commentCount"></span>
+                <a href="/2017/09/09/朴素贝叶斯—-新闻文本分类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/09/朴素贝叶斯—-新闻文本分类/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -426,7 +429,7 @@
 
           
           
-             <span id="/2017/03/05/Hexo搭建个人博客/" class="leancloud_visitors" data-flag-title="Hexo搭建个人博客">
+             <span id="/2017/09/09/朴素贝叶斯—-新闻文本分类/" class="leancloud_visitors" data-flag-title="朴素贝叶斯-新闻文本分类">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -458,9 +461,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" rel="gallery_cj7dcf9nv000024cpdlhvwm6r"
+                 href="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cj7dcf9pd001324cph2zo0bkq"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" itemprop="contentUrl"/>
+                <img src="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" itemprop="contentUrl"/>
               </a>
             
           
@@ -471,60 +474,34 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>人啊，总有那么一瞬间，想把自己各种美好与不美好的瞬间，经历与感悟给记录下来。当自己回过头再来看的时候，也许会哭，会笑，酸甜苦辣，各有滋味。当这些点点滴滴汇聚起来之后，估计我会仰天大吼：这一世没白活！<br><a id="more"></a></p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>这个周末在网上各种找资料、跨过无数坑之后，个人博客算是初步完成了。</p>
-<h2 id="【目标与要求】"><a href="#【目标与要求】" class="headerlink" title="【目标与要求】"></a>【目标与要求】</h2><ul>
-<li>美观：对审美有一定要求，有相对不错的外观</li>
-<li>功能：起码能分类、打标签、各种时间维度能归档</li>
-<li>学习成本：语言、代码相对更容易，学习成本相对较低</li>
-<li>时间与金钱成本：最好不用花钱（能省点是一点，我的土壕朋友请无视），不用花太多时间在系统运维  </li>
-</ul>
-<h2 id="【产品选型】"><a href="#【产品选型】" class="headerlink" title="【产品选型】"></a>【产品选型】</h2><ul>
-<li>第三方博客平台，如CSDN、博客园、新浪、豆瓣等。可直接写文章，但模板、样式固定，不算难看也不算好看（简书整体不错，简约风，但是不能带标签，而且鸡汤较多…）</li>
-<li>博客工具，部分支持MarkDown语法，免去把文本转化为HTML的痛苦，主要有：<ul>
-<li><strong>wordpress</strong>：功能强大，要有主机与域名（免费有限制，正经使用的要花钱购买、备案，还要考虑审批部门的效率…你懂的），折腾太费事费时</li>
-<li><strong>ghost</strong>：类似wordpress，相对较重，也是动态网站、需要依赖数据库</li>
-<li><strong>Jekyll</strong>：静态文件生成器，支持Markdown，能部署到github。依赖较多库，windows用户不友好，无本地预览功能</li>
-<li><strong>hexo</strong>：安装简单，依赖少（仅node），中文支持好（台湾人写的），命令少，易于记忆，可本地实现简单预览，支持markdown。  </li>
-</ul>
-</li>
-</ul>
-<p>果断选择了<strong>Hexo</strong>，下面是介绍下主角：</p>
-<p> “A fast, simple &amp; powerful blog framework, powered by Node.js.”（官方版）。它是一个Node的静态博客框架，因此没有数据库。可直接部署到github上。好处大大的：省去服务器成本，减少系统运维(系统管理、备份、网络)。</p>
-<h2 id="【安装操作】"><a href="#【安装操作】" class="headerlink" title="【安装操作】"></a>【安装操作】</h2><ol>
-<li><p><strong>安装node.js</strong>：用来生成静态页面[<a href="https://nodejs.org/en/" target="_blank" rel="external">点击安装node</a>]</p>
-</li>
-<li><p><strong>注册Github账号</strong>：欢迎加入全球最大的同性交友网站ヾ(◍’౪`◍)ﾉﾞ。不限流量、免费提供开放的托管静态页面的网站。<br> <em>注意！新建的Repo一定要与你的github用户名一模一样，如<strong>[username].github.io</strong></em></p>
-</li>
-<li><p><strong>安装Git</strong>：用于把本地的Hexo内容沟通,传输,部署到Github上。安装教程可参考廖雪峰的博客[<a href="https://git-for-windows.github.io/" target="_blank" rel="external">点击安装Git</a>]<br> <em>以下步骤一定要做！</em></p>
-  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"Your Name"</span></div><div class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"email@example.com"</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装Hexo</strong><br> 在git bash中敲：</p>
- <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-<span class="keyword">cli</span> -g</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="【构建博客】"><a href="#【构建博客】" class="headerlink" title="【构建博客】"></a>【构建博客】</h2><ol>
-<li><p><strong>初始化</strong><br> 创建一个新的文件夹（放你博客的地方），右键点击Git Bash Here，执行：</p>
- <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">hexo init</span></div></pre></td></tr></table></figure>
-<p> 可以通过以下命令查看是否执行成功</p>
- <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">hexo s</span></div></pre></td></tr></table></figure>
-<p> 出现以下代码，恭喜成功~，并在浏览器输入：<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 进行本地预览（默认端口4000）</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INFO  <span class="keyword">Start</span> processing</div><div class="line">INFO  Hexo <span class="keyword">is</span> running <span class="keyword">at</span> <span class="keyword">http</span>://localhost:<span class="number">4000</span>/. Press Ctrl+C <span class="keyword">to</span> stop.</div></pre></td></tr></table></figure>
-<p> <img src="/images/hexo.png" alt=""></p>
-</li>
-<li><p><strong>配置与部署</strong><br> 我们看到之前创建的博客所在文件夹结构：</p>
+        <h1 id="「朴素贝叶斯」"><a href="#「朴素贝叶斯」" class="headerlink" title="「朴素贝叶斯」"></a>「朴素贝叶斯」</h1><p>具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： <strong>朴素贝叶斯 = 条件独立假设 + 贝叶斯方法</strong>。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。</p>
+<h1 id="「Python实现」"><a href="#「Python实现」" class="headerlink" title="「Python实现」"></a>「Python实现」</h1><h2 id="导入停用词"><a href="#导入停用词" class="headerlink" title="导入停用词"></a>导入停用词</h2><p>导入停用词库，同时使用<code>strip()</code>方法剔除不需要的空白符，包括<code>（&#39;\n&#39;, &#39;\r&#39;, &#39;\t&#39;, &#39; &#39;）</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_word_set</span><span class="params">(words_file)</span>:</span></div><div class="line">    words_set = set()</div><div class="line">    <span class="keyword">with</span> codecs.open(words_file,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</div><div class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> fp:</div><div class="line">            word = line.strip()</div><div class="line">            <span class="keyword">if</span> len(word) &gt; <span class="number">0</span> <span class="keyword">and</span> word <span class="keyword">not</span> <span class="keyword">in</span> words_set:</div><div class="line">                words_set.add(word)</div><div class="line">    <span class="keyword">return</span> words_set</div></pre></td></tr></table></figure></p>
+<h2 id="文本处理，样本生成"><a href="#文本处理，样本生成" class="headerlink" title="文本处理，样本生成"></a>文本处理，样本生成</h2><p>每个新闻文本txt文件在各自所属类别的文件夹中，结构如下：</p>
 <blockquote>
-<p>Blog<br> 　｜<br> 　｜－－ .deploy_git<br> 　｜－－ node_modules<br> 　｜－－ scaffolds<br> 　｜－－ source<br> 　｜－－ themes<br> 　｜－－ _config.yml<br> 　｜－－ _gitinore<br> 　｜－－ db.json<br> 　｜－－ package.json<br> 　｜－－ debug.log </p>
+<p>“folder_path”<br>　｜<br>　｜－－ C000008 －－ 1.txt / 2.txt / … / 19.txt<br>　｜－－ C000010<br>　｜－－ C000013<br>　｜－－ …<br>　｜－－ C000024</p>
 </blockquote>
-<p> 现在需要_config.yml与我们github用户名对应的仓库建立联系。打开<code>_config.yml</code>文件，拉到最后对应修改：</p>
- <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">type: git</div><div class="line">repo: <span class="link">http://github.com/</span>[<span class="string">username</span>]/[username].github.io</div></pre></td></tr></table></figure>
-<p> 并部署：</p>
- <figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean      # 清除缓存</div><div class="line">hexo <span class="keyword">generate</span>   # 生成静态页面</div><div class="line">hexo deploy     # 上传部署</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>到现在，我们的“简装房”就有了，后续需要通过主题替换与各种功能设置，来鸟枪换大炮，变成“精装房”(▰˘◡˘▰) ~。</p>
+<p>这里使用<code>os.listdir()</code>读取指定目录下的所有文件夹名（即分类类别），遍历各自文件夹（类别）内的文本文件，对每一个txt文件进行文本切词，同时利用<code>zip()</code>函数使每个新闻文本与所属类别一一对应，一共有90条数据。</p>
+<p>为了随机抽取训练与测试数据集，用<code>random.shuffle()</code>打乱顺序，并选取20%的数据用于测试，同时把特征数据与类别数据各自分开。</p>
+<p>最后对训练数据集中的词语进行词频统计。这里有使用<code>sorted()</code>函数进行排序，方法为<code>sorted(iterable, cmp = None, key = None, reverse = False)</code>，其中参数含义如下：</p>
+<ul>
+<li><strong>iterable</strong>：是可迭代类型（我这里的可迭代类型为字典）</li>
+<li><strong>cmp</strong>：用于比较的函数，比较什么由key决定（这里没用到）</li>
+<li><strong>key</strong>：用列表元素的某个属性或函数进行作为关键字（这里使用字典中的“值”大小作为关键字排序）</li>
+<li><strong>reverse</strong>：排序规则，True为降序（False为升序）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_processing</span><span class="params">(folder_path, test_size = <span class="number">0.2</span>)</span>:</span></div><div class="line">    folder_list = os.listdir(folder_path)</div><div class="line">    data_list = []</div><div class="line">    class_list = []</div><div class="line">    <span class="comment"># 遍历文件夹</span></div><div class="line">    <span class="keyword">for</span> folder <span class="keyword">in</span> folder_list:</div><div class="line">        new_folder_path = os.path.join(folder_path,folder)</div><div class="line">        files = os.listdir(new_folder_path)</div><div class="line">        j = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">            <span class="keyword">if</span> j &gt; <span class="number">100</span>: <span class="comment"># 防止内存爆掉</span></div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">with</span> codecs.open(os.path.join(new_folder_path, file), <span class="string">'r'</span>, <span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</div><div class="line">                raw = fp.read()</div><div class="line">                word_cut = jieba.cut(raw, cut_all = <span class="keyword">False</span>)</div><div class="line">                word_list = list(word_cut)</div><div class="line">                data_list.append(word_list) <span class="comment"># 训练集</span></div><div class="line">                class_list.append(folder)   <span class="comment"># 类别</span></div><div class="line">                j += <span class="number">1</span>      </div><div class="line"></div><div class="line">    <span class="comment"># 划分训练集和测试集</span></div><div class="line">    data_class_list = list(zip(data_list, class_list))</div><div class="line">    random.shuffle(data_class_list)    <span class="comment"># 打乱顺序</span></div><div class="line">    index = int(len(data_class_list) * test_size) + <span class="number">1</span>   <span class="comment"># 抽取测试数据集的占比</span></div><div class="line">    train_list = data_class_list[index:]</div><div class="line">    test_list = data_class_list[:index]</div><div class="line">    train_data_list,train_class_list = zip(*train_list) <span class="comment"># 特征与标签</span></div><div class="line">    test_data_list,test_class_list = zip(*test_list) </div><div class="line"></div><div class="line">    <span class="comment"># 统计词频</span></div><div class="line">    all_words_dict = &#123;&#125;</div><div class="line">    <span class="keyword">for</span> word_list <span class="keyword">in</span> train_data_list:</div><div class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> word_list:</div><div class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> all_words_dict:</div><div class="line">                all_words_dict[word] += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                all_words_dict[word] = <span class="number">1</span></div><div class="line">            </div><div class="line">    <span class="comment"># 降序排序（key函数）</span></div><div class="line">    all_words_tuple_list = sorted(all_words_dict.items(),key = <span class="keyword">lambda</span> f:f[<span class="number">1</span>], reverse = <span class="keyword">True</span>)</div><div class="line">    all_words_list = list(zip(*all_words_tuple_list))[<span class="number">0</span>]</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> all_words_list, train_data_list, test_data_list, train_class_list, test_class_list</div></pre></td></tr></table></figure>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>这里我们仅选取词频坐高的1000个特征词（维度），并剔除数字与停用词。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">words_dict</span><span class="params">(all_words_list,deleteN,stopwords_set=set<span class="params">()</span>)</span>:</span></div><div class="line">    feature_words = []</div><div class="line">    n = <span class="number">1</span></div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(deleteN,len(all_words_list),<span class="number">1</span>):</div><div class="line">        <span class="keyword">if</span> n &gt; <span class="number">1000</span>:    <span class="comment"># 最多取1000个维度</span></div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> all_words_list[t].isdigit() <span class="keyword">and</span> all_words_list[t] <span class="keyword">not</span> <span class="keyword">in</span> stopwords_set <span class="keyword">and</span> <span class="number">1</span> &lt; len(all_words_list[t]) &lt; <span class="number">5</span>:</div><div class="line">            feature_words.append(all_words_list[t])</div><div class="line">            n += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> feature_words</div></pre></td></tr></table></figure></p>
+<h2 id="用选取的特征词构建0-1矩阵"><a href="#用选取的特征词构建0-1矩阵" class="headerlink" title="用选取的特征词构建0-1矩阵"></a>用选取的特征词构建0-1矩阵</h2><p>对训练数据集train_data_list中每篇切完词之后的文档构建特征向量（由上述1000个特征词组成），若出现则取值为1，否则为0。于是90篇文章构建出了[90,1000]维度的0-1矩阵（其中71行为训练数据，19行为测试数据）。</p>
+<p>训练集如下：<br><img src="http://upload-images.jianshu.io/upload_images/4762054-ecf24ef5e855b0f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 500px;"></p>
+<p>0-1矩阵如下：<br><img src="http://upload-images.jianshu.io/upload_images/4762054-a40a8ecd7497d7db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 400px;"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_features</span><span class="params">(train_data_list, test_data_list, feature_words)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">text_features</span><span class="params">(text,feature_words)</span>:</span></div><div class="line">        <span class="comment"># text = train_data_list[0]</span></div><div class="line">        text_words = set(text)</div><div class="line">        features = [<span class="number">1</span> <span class="keyword">if</span> word <span class="keyword">in</span> text_words <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> word <span class="keyword">in</span> feature_words]</div><div class="line">        <span class="keyword">return</span> features</div><div class="line">        </div><div class="line">    <span class="comment"># 0,1的矩阵（1000列-维度）    </span></div><div class="line">    train_feature_list = [text_features(text, feature_words) <span class="keyword">for</span> text <span class="keyword">in</span> train_data_list]</div><div class="line">    test_feature_list = [text_features(text, feature_words) <span class="keyword">for</span> text <span class="keyword">in</span> test_data_list]</div><div class="line">    <span class="keyword">return</span> train_feature_list,test_feature_list</div></pre></td></tr></table></figure>
+<h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><p>这里使用开源sklearn库中的朴素贝叶斯分类器，输入参数分别为训练集的0-1特征矩阵（train_feature_list）与训练集分类（train_class_list），然后对测试数据的输出与真实结果进行比较，得到准确度为0.68</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_classifier</span><span class="params">(train_feature_list,test_feature_list,train_class_list,test_class_list)</span>:</span></div><div class="line">    <span class="comment"># sklearn多项式分类器</span></div><div class="line">    classifier = MultinomialNB().fit(train_feature_list,train_class_list)   <span class="comment"># 特征向量与类别</span></div><div class="line">    test_accuracy = classifier.score(test_feature_list,test_class_list)</div><div class="line">    <span class="keyword">return</span> test_accuracy</div></pre></td></tr></table></figure>
+<p>这里我们仅选取词频最高的1000个作为特征向量，不妨尝试下选取其他的关键字作为特征向量，发现准确率都在0.63以上，分类效果还算可以，见下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-a1c4d9a911f69407.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="comment"># 文本预处理（分词、划分训练与测试集、排序）</span></div><div class="line">    folder_path = <span class="string">'...'</span></div><div class="line">    all_words_list, train_data_list, test_data_list, train_class_list, test_class_list = text_processing(folder_path, test_size = <span class="number">0.2</span>)</div><div class="line">    </div><div class="line">    <span class="comment"># stopwords_set</span></div><div class="line">    stopwords_file = <span class="string">'...'</span></div><div class="line">    stopwords_set = make_word_set(stopwords_file)</div><div class="line"></div><div class="line">    <span class="comment"># 特征提取与分类</span></div><div class="line">    deleteNs = range(<span class="number">0</span>,<span class="number">1000</span>,<span class="number">20</span>)</div><div class="line">    test_accuracy_list = []</div><div class="line">    <span class="keyword">for</span> deleteN <span class="keyword">in</span> deleteNs:</div><div class="line">        <span class="comment"># 选取1000个特征</span></div><div class="line">        feature_words = words_dict(all_words_list,deleteN,stopwords_set)</div><div class="line">        <span class="comment"># 计算特征向量</span></div><div class="line">        train_feature_list, test_feature_list = text_features(train_data_list,test_data_list,feature_words)</div><div class="line">        <span class="comment"># sklearn分类器计算准确度</span></div><div class="line">        test_accuracy = text_classifier(train_feature_list,test_feature_list,train_class_list,test_class_list)</div><div class="line">        <span class="comment"># 不同特征向量下的准确度</span></div><div class="line">        test_accuracy_list.append(test_accuracy)</div><div class="line">    print(test_accuracy_list)</div><div class="line"></div><div class="line">    <span class="comment"># 结果评价</span></div><div class="line">    plt.figure()</div><div class="line">    plt.plot(deleteNs,test_accuracy_list)</div><div class="line">    plt.title(<span class="string">'Relationship of deleteNs and test_accuracy'</span>)</div><div class="line">    plt.xlabel(<span class="string">'deleteNs'</span>)</div><div class="line">    plt.ylabel(<span class="string">'test_accuracy'</span>)</div><div class="line">    plt.savefig(<span class="string">'result.png'</span>,dpi = <span class="number">100</span>)</div><div class="line">    plt.show()</div></pre></td></tr></table></figure>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
-<p><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo 中文文档</a> 【包涵：文档、API、插件、主题】<br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">NexT 使用文档</a>【包含：开始使用、主题配置、第三方服务、内建标签、常见问题】</p>
+<p><a href="http://blog.csdn.net/longxinchen_ml/article/details/50597149" target="_blank" rel="external">用朴素贝叶斯进行文本分类</a><br><a href="http://www.ruanyifeng.com/blog/2013/12/naive_bayes_classifier.html" target="_blank" rel="external">朴素贝叶斯分类器的应用</a> </p>
 </blockquote>
 
       
@@ -549,9 +526,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/NexT/" rel="tag"># NexT</a>
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
           
         </div>
       
@@ -564,15 +543,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/26/《小岛经济学》读书笔记（四）/" rel="next" title="《小岛经济学》读书笔记（四）">
+                <i class="fa fa-chevron-left"></i> 《小岛经济学》读书笔记（四）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/08/R数据可视化－动态、交互式地图神器（三）符号标记/" rel="prev" title="R数据可视化－动态、交互式地图神器（三）自定义Marker">
-                R数据可视化－动态、交互式地图神器（三）自定义Marker <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -587,10 +566,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/05/Hexo搭建个人博客/"
-     data-title="Hexo搭建个人博客"
+        <div class="ds-share flat" data-thread-key="2017/09/09/朴素贝叶斯—-新闻文本分类/"
+     data-title="朴素贝叶斯-新闻文本分类"
      data-content=""
-     data-url="JuniorNi.github.io/2017/03/05/Hexo搭建个人博客/">
+     data-url="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -619,8 +598,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/05/Hexo搭建个人博客/"
-           data-title="Hexo搭建个人博客" data-url="JuniorNi.github.io/2017/03/05/Hexo搭建个人博客/">
+      <div class="ds-thread" data-thread-key="2017/09/09/朴素贝叶斯—-新闻文本分类/"
+           data-title="朴素贝叶斯-新闻文本分类" data-url="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/">
       </div>
     
   </div>
@@ -764,7 +743,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【目标与要求】"><span class="nav-number">2.1.</span> <span class="nav-text">【目标与要求】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【产品选型】"><span class="nav-number">2.2.</span> <span class="nav-text">【产品选型】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【安装操作】"><span class="nav-number">2.3.</span> <span class="nav-text">【安装操作】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【构建博客】"><span class="nav-number">2.4.</span> <span class="nav-text">【构建博客】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#「朴素贝叶斯」"><span class="nav-number">1.</span> <span class="nav-text">「朴素贝叶斯」</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#「Python实现」"><span class="nav-number">2.</span> <span class="nav-text">「Python实现」</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入停用词"><span class="nav-number">2.1.</span> <span class="nav-text">导入停用词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理，样本生成"><span class="nav-number">2.2.</span> <span class="nav-text">文本处理，样本生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择"><span class="nav-number">2.3.</span> <span class="nav-text">特征选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用选取的特征词构建0-1矩阵"><span class="nav-number">2.4.</span> <span class="nav-text">用选取的特征词构建0-1矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#朴素贝叶斯分类器"><span class="nav-number">2.5.</span> <span class="nav-text">朴素贝叶斯分类器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
