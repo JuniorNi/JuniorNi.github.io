@@ -94,7 +94,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,机器学习,NLP," />
+  <meta name="keywords" content="机器学习,混淆矩阵," />
 
 
 
@@ -110,18 +110,18 @@
 
 
 
-<meta name="description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。">
+<meta name="description" content="前言好几个月都没写点东西，更新博客了。果然，懒惰是人类的天性啊！趁着记忆清晰，对前些日子部门内部的建模比赛进行知识梳理，总结经验与心得，加深印象，以备不时之需。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="朴素贝叶斯-新闻文本分类">
-<meta property="og:url" content="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/index.html">
+<meta property="og:title" content="11月内部建模比赛总结（一）评价风控的标准">
+<meta property="og:url" content="JuniorNi.github.io/2018/01/10/如何评价模型的优劣（一）/index.html">
 <meta property="og:site_name" content="We are on the way">
-<meta property="og:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-01-11T14:19:34.352Z">
+<meta property="og:description" content="前言好几个月都没写点东西，更新博客了。果然，懒惰是人类的天性啊！趁着记忆清晰，对前些日子部门内部的建模比赛进行知识梳理，总结经验与心得，加深印象，以备不时之需。">
+<meta property="og:image" content="https://pic1.zhimg.com/50/d701da76199148837cfed83901cea99e_hd.jpg">
+<meta property="og:updated_time" content="2018-01-13T10:08:03.264Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="朴素贝叶斯-新闻文本分类">
-<meta name="twitter:description" content="「朴素贝叶斯」具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： 朴素贝叶斯 = 条件独立假设 + 贝叶斯方法。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="11月内部建模比赛总结（一）评价风控的标准">
+<meta name="twitter:description" content="前言好几个月都没写点东西，更新博客了。果然，懒惰是人类的天性啊！趁着记忆清晰，对前些日子部门内部的建模比赛进行知识梳理，总结经验与心得，加深印象，以备不时之需。">
+<meta name="twitter:image" content="https://pic1.zhimg.com/50/d701da76199148837cfed83901cea99e_hd.jpg">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/"/>
+  <link rel="canonical" href="JuniorNi.github.io/2018/01/10/如何评价模型的优劣（一）/"/>
 
 
 
 
 
-  <title> 朴素贝叶斯-新闻文本分类 | We are on the way </title>
+  <title> 11月内部建模比赛总结（一）评价风控的标准 | We are on the way </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -340,7 +340,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/">
+    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2018/01/10/如何评价模型的优劣（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junior Ni">
@@ -361,7 +361,7 @@
             
             
               
-                朴素贝叶斯-新闻文本分类
+                11月内部建模比赛总结（一）评价风控的标准
               
             
           </h1>
@@ -376,8 +376,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T17:47:21+08:00">
-                2017-09-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T20:00:28+08:00">
+                2018-01-10
               </time>
             
 
@@ -417,8 +417,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/09/朴素贝叶斯—-新闻文本分类/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/09/朴素贝叶斯—-新闻文本分类/" itemprop="commentCount"></span>
+                <a href="/2018/01/10/如何评价模型的优劣（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/10/如何评价模型的优劣（一）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -426,7 +426,7 @@
 
           
           
-             <span id="/2017/09/09/朴素贝叶斯—-新闻文本分类/" class="leancloud_visitors" data-flag-title="朴素贝叶斯-新闻文本分类">
+             <span id="/2018/01/10/如何评价模型的优劣（一）/" class="leancloud_visitors" data-flag-title="11月内部建模比赛总结（一）评价风控的标准">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -458,9 +458,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cjcd6xz1y00142ocpaehzkrdg"
+                 href="https://pic1.zhimg.com/50/d701da76199148837cfed83901cea99e_hd.jpg" rel="gallery_cjcd6xz2200192ocpwhuyy8vz"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://upload-images.jianshu.io/upload_images/4762054-4a4418832c9b3ebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" itemprop="contentUrl"/>
+                <img src="https://pic1.zhimg.com/50/d701da76199148837cfed83901cea99e_hd.jpg" itemprop="contentUrl"/>
               </a>
             
           
@@ -471,35 +471,70 @@
       
 
       
-        <h1 id="「朴素贝叶斯」"><a href="#「朴素贝叶斯」" class="headerlink" title="「朴素贝叶斯」"></a>「朴素贝叶斯」</h1><p>具体理论就不详细讲解了，网上一搜一大把。其核心思想就是： <strong>朴素贝叶斯 = 条件独立假设 + 贝叶斯方法</strong>。运行速度快，在满足分布独立这一假设条件下分类效果好，但对于训练集中没有出现过的词语要平滑处理，数值型变量特征默认符合正态分布。<br><a id="more"></a></p>
-<h1 id="「Python实现」"><a href="#「Python实现」" class="headerlink" title="「Python实现」"></a>「Python实现」</h1><h2 id="导入停用词"><a href="#导入停用词" class="headerlink" title="导入停用词"></a>导入停用词</h2><p>导入停用词库，同时使用<code>strip()</code>方法剔除不需要的空白符，包括<code>（&#39;\n&#39;, &#39;\r&#39;, &#39;\t&#39;, &#39; &#39;）</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_word_set</span><span class="params">(words_file)</span>:</span></div><div class="line">    words_set = set()</div><div class="line">    <span class="keyword">with</span> codecs.open(words_file,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</div><div class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> fp:</div><div class="line">            word = line.strip()</div><div class="line">            <span class="keyword">if</span> len(word) &gt; <span class="number">0</span> <span class="keyword">and</span> word <span class="keyword">not</span> <span class="keyword">in</span> words_set:</div><div class="line">                words_set.add(word)</div><div class="line">    <span class="keyword">return</span> words_set</div></pre></td></tr></table></figure></p>
-<h2 id="文本处理，样本生成"><a href="#文本处理，样本生成" class="headerlink" title="文本处理，样本生成"></a>文本处理，样本生成</h2><p>每个新闻文本txt文件在各自所属类别的文件夹中，结构如下：</p>
-<blockquote>
-<p>“folder_path”<br>　｜<br>　｜－－ C000008 －－ 1.txt / 2.txt / … / 19.txt<br>　｜－－ C000010<br>　｜－－ C000013<br>　｜－－ …<br>　｜－－ C000024</p>
-</blockquote>
-<p>这里使用<code>os.listdir()</code>读取指定目录下的所有文件夹名（即分类类别），遍历各自文件夹（类别）内的文本文件，对每一个txt文件进行文本切词，同时利用<code>zip()</code>函数使每个新闻文本与所属类别一一对应，一共有90条数据。</p>
-<p>为了随机抽取训练与测试数据集，用<code>random.shuffle()</code>打乱顺序，并选取20%的数据用于测试，同时把特征数据与类别数据各自分开。</p>
-<p>最后对训练数据集中的词语进行词频统计。这里有使用<code>sorted()</code>函数进行排序，方法为<code>sorted(iterable, cmp = None, key = None, reverse = False)</code>，其中参数含义如下：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>好几个月都没写点东西，更新博客了。果然，懒惰是人类的天性啊！趁着记忆清晰，对前些日子部门内部的建模比赛进行知识梳理，总结经验与心得，加深印象，以备不时之需。</p>
+<a id="more"></a>
+<h1 id="评价风控（模型）的标准"><a href="#评价风控（模型）的标准" class="headerlink" title="评价风控（模型）的标准"></a>评价风控（模型）的标准</h1><h2 id="【混淆矩阵】"><a href="#【混淆矩阵】" class="headerlink" title="【混淆矩阵】"></a>【混淆矩阵】</h2><p>本次建模是关于<strong>风控反欺诈，对非金交易客户进行预测，判断是否为欺诈客户</strong>。这里暂先撇开风控建模相关的事宜，我们来谈谈评判风控的标准是什么。</p>
+<p>最好的风控效果其实是<strong>在所有客户中能100%鉴别出欺诈客户</strong>，然而现实是：这样的判断力太难实现了。在我们认定欺诈的客户中必然会误杀部分“好”客户；而在认定的非欺诈客户中同样也存在漏网之鱼（欺诈客户）。</p>
+<p>因此，这里我们需要引进<strong>混淆矩阵</strong>这个概念。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">(预测)    1</th>
+<th style="text-align:center">(预测)    0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(真实)    1</td>
+<td style="text-align:center">TP</td>
+<td style="text-align:center">FN</td>
+</tr>
+<tr>
+<td style="text-align:center">(真实)    0</td>
+<td style="text-align:center">FP</td>
+<td style="text-align:center">TN</td>
+</tr>
+</tbody>
+</table>
+<p>这里的0、1与网上关于混淆矩阵的介绍正好相反。大部分的资料都会把好客户作为把目标客户1，而我们的目标是要预测欺诈客户，所以<strong>欺诈客户为1，非欺诈客户为0</strong>。通过预测与真实的差异，得到以下4个指标：</p>
 <ul>
-<li><strong>iterable</strong>：是可迭代类型（我这里的可迭代类型为字典）</li>
-<li><strong>cmp</strong>：用于比较的函数，比较什么由key决定（这里没用到）</li>
-<li><strong>key</strong>：用列表元素的某个属性或函数进行作为关键字（这里使用字典中的“值”大小作为关键字排序）</li>
-<li><strong>reverse</strong>：排序规则，True为降序（False为升序）</li>
+<li><strong>TP：</strong>本身就是欺诈客户，同时也被判断为欺诈客户（True Positive）</li>
+<li><strong>TN：</strong>本身是好客户，同时被判断为好客户（True Negative）</li>
+<li><strong>FN：</strong>欺诈客户被认为是好客户，即漏网之鱼（False Negative）</li>
+<li><strong>FP：</strong>好客户却被判为欺诈客户，即误杀掉的（False Positive）</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_processing</span><span class="params">(folder_path, test_size = <span class="number">0.2</span>)</span>:</span></div><div class="line">    folder_list = os.listdir(folder_path)</div><div class="line">    data_list = []</div><div class="line">    class_list = []</div><div class="line">    <span class="comment"># 遍历文件夹</span></div><div class="line">    <span class="keyword">for</span> folder <span class="keyword">in</span> folder_list:</div><div class="line">        new_folder_path = os.path.join(folder_path,folder)</div><div class="line">        files = os.listdir(new_folder_path)</div><div class="line">        j = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">            <span class="keyword">if</span> j &gt; <span class="number">100</span>: <span class="comment"># 防止内存爆掉</span></div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">with</span> codecs.open(os.path.join(new_folder_path, file), <span class="string">'r'</span>, <span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</div><div class="line">                raw = fp.read()</div><div class="line">                word_cut = jieba.cut(raw, cut_all = <span class="keyword">False</span>)</div><div class="line">                word_list = list(word_cut)</div><div class="line">                data_list.append(word_list) <span class="comment"># 训练集</span></div><div class="line">                class_list.append(folder)   <span class="comment"># 类别</span></div><div class="line">                j += <span class="number">1</span>      </div><div class="line"></div><div class="line">    <span class="comment"># 划分训练集和测试集</span></div><div class="line">    data_class_list = list(zip(data_list, class_list))</div><div class="line">    random.shuffle(data_class_list)    <span class="comment"># 打乱顺序</span></div><div class="line">    index = int(len(data_class_list) * test_size) + <span class="number">1</span>   <span class="comment"># 抽取测试数据集的占比</span></div><div class="line">    train_list = data_class_list[index:]</div><div class="line">    test_list = data_class_list[:index]</div><div class="line">    train_data_list,train_class_list = zip(*train_list) <span class="comment"># 特征与标签</span></div><div class="line">    test_data_list,test_class_list = zip(*test_list) </div><div class="line"></div><div class="line">    <span class="comment"># 统计词频</span></div><div class="line">    all_words_dict = &#123;&#125;</div><div class="line">    <span class="keyword">for</span> word_list <span class="keyword">in</span> train_data_list:</div><div class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> word_list:</div><div class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> all_words_dict:</div><div class="line">                all_words_dict[word] += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                all_words_dict[word] = <span class="number">1</span></div><div class="line">            </div><div class="line">    <span class="comment"># 降序排序（key函数）</span></div><div class="line">    all_words_tuple_list = sorted(all_words_dict.items(),key = <span class="keyword">lambda</span> f:f[<span class="number">1</span>], reverse = <span class="keyword">True</span>)</div><div class="line">    all_words_list = list(zip(*all_words_tuple_list))[<span class="number">0</span>]</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> all_words_list, train_data_list, test_data_list, train_class_list, test_class_list</div></pre></td></tr></table></figure>
-<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>这里我们仅选取词频坐高的1000个特征词（维度），并剔除数字与停用词。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">words_dict</span><span class="params">(all_words_list,deleteN,stopwords_set=set<span class="params">()</span>)</span>:</span></div><div class="line">    feature_words = []</div><div class="line">    n = <span class="number">1</span></div><div class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(deleteN,len(all_words_list),<span class="number">1</span>):</div><div class="line">        <span class="keyword">if</span> n &gt; <span class="number">1000</span>:    <span class="comment"># 最多取1000个维度</span></div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> all_words_list[t].isdigit() <span class="keyword">and</span> all_words_list[t] <span class="keyword">not</span> <span class="keyword">in</span> stopwords_set <span class="keyword">and</span> <span class="number">1</span> &lt; len(all_words_list[t]) &lt; <span class="number">5</span>:</div><div class="line">            feature_words.append(all_words_list[t])</div><div class="line">            n += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> feature_words</div></pre></td></tr></table></figure></p>
-<h2 id="用选取的特征词构建0-1矩阵"><a href="#用选取的特征词构建0-1矩阵" class="headerlink" title="用选取的特征词构建0-1矩阵"></a>用选取的特征词构建0-1矩阵</h2><p>对训练数据集train_data_list中每篇切完词之后的文档构建特征向量（由上述1000个特征词组成），若出现则取值为1，否则为0。于是90篇文章构建出了[90,1000]维度的0-1矩阵（其中71行为训练数据，19行为测试数据）。</p>
-<p>训练集如下：<br><img src="http://upload-images.jianshu.io/upload_images/4762054-ecf24ef5e855b0f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 500px;"></p>
-<p>0-1矩阵如下：<br><img src="http://upload-images.jianshu.io/upload_images/4762054-a40a8ecd7497d7db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 400px;"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_features</span><span class="params">(train_data_list, test_data_list, feature_words)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">text_features</span><span class="params">(text,feature_words)</span>:</span></div><div class="line">        <span class="comment"># text = train_data_list[0]</span></div><div class="line">        text_words = set(text)</div><div class="line">        features = [<span class="number">1</span> <span class="keyword">if</span> word <span class="keyword">in</span> text_words <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> word <span class="keyword">in</span> feature_words]</div><div class="line">        <span class="keyword">return</span> features</div><div class="line">        </div><div class="line">    <span class="comment"># 0,1的矩阵（1000列-维度）    </span></div><div class="line">    train_feature_list = [text_features(text, feature_words) <span class="keyword">for</span> text <span class="keyword">in</span> train_data_list]</div><div class="line">    test_feature_list = [text_features(text, feature_words) <span class="keyword">for</span> text <span class="keyword">in</span> test_data_list]</div><div class="line">    <span class="keyword">return</span> train_feature_list,test_feature_list</div></pre></td></tr></table></figure>
-<h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><p>这里使用开源sklearn库中的朴素贝叶斯分类器，输入参数分别为训练集的0-1特征矩阵（train_feature_list）与训练集分类（train_class_list），然后对测试数据的输出与真实结果进行比较，得到准确度为0.68</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_classifier</span><span class="params">(train_feature_list,test_feature_list,train_class_list,test_class_list)</span>:</span></div><div class="line">    <span class="comment"># sklearn多项式分类器</span></div><div class="line">    classifier = MultinomialNB().fit(train_feature_list,train_class_list)   <span class="comment"># 特征向量与类别</span></div><div class="line">    test_accuracy = classifier.score(test_feature_list,test_class_list)</div><div class="line">    <span class="keyword">return</span> test_accuracy</div></pre></td></tr></table></figure>
-<p>这里我们仅选取词频最高的1000个作为特征向量，不妨尝试下选取其他的关键字作为特征向量，发现准确率都在0.63以上，分类效果还算可以，见下图：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4762054-a1c4d9a911f69407.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="comment"># 文本预处理（分词、划分训练与测试集、排序）</span></div><div class="line">    folder_path = <span class="string">'...'</span></div><div class="line">    all_words_list, train_data_list, test_data_list, train_class_list, test_class_list = text_processing(folder_path, test_size = <span class="number">0.2</span>)</div><div class="line">    </div><div class="line">    <span class="comment"># stopwords_set</span></div><div class="line">    stopwords_file = <span class="string">'...'</span></div><div class="line">    stopwords_set = make_word_set(stopwords_file)</div><div class="line"></div><div class="line">    <span class="comment"># 特征提取与分类</span></div><div class="line">    deleteNs = range(<span class="number">0</span>,<span class="number">1000</span>,<span class="number">20</span>)</div><div class="line">    test_accuracy_list = []</div><div class="line">    <span class="keyword">for</span> deleteN <span class="keyword">in</span> deleteNs:</div><div class="line">        <span class="comment"># 选取1000个特征</span></div><div class="line">        feature_words = words_dict(all_words_list,deleteN,stopwords_set)</div><div class="line">        <span class="comment"># 计算特征向量</span></div><div class="line">        train_feature_list, test_feature_list = text_features(train_data_list,test_data_list,feature_words)</div><div class="line">        <span class="comment"># sklearn分类器计算准确度</span></div><div class="line">        test_accuracy = text_classifier(train_feature_list,test_feature_list,train_class_list,test_class_list)</div><div class="line">        <span class="comment"># 不同特征向量下的准确度</span></div><div class="line">        test_accuracy_list.append(test_accuracy)</div><div class="line">    print(test_accuracy_list)</div><div class="line"></div><div class="line">    <span class="comment"># 结果评价</span></div><div class="line">    plt.figure()</div><div class="line">    plt.plot(deleteNs,test_accuracy_list)</div><div class="line">    plt.title(<span class="string">'Relationship of deleteNs and test_accuracy'</span>)</div><div class="line">    plt.xlabel(<span class="string">'deleteNs'</span>)</div><div class="line">    plt.ylabel(<span class="string">'test_accuracy'</span>)</div><div class="line">    plt.savefig(<span class="string">'result.png'</span>,dpi = <span class="number">100</span>)</div><div class="line">    plt.show()</div></pre></td></tr></table></figure>
-<h1 id="「参考资料」"><a href="#「参考资料」" class="headerlink" title="「参考资料」"></a>「参考资料」</h1><blockquote>
-<p><a href="http://blog.csdn.net/longxinchen_ml/article/details/50597149" target="_blank" rel="external">用朴素贝叶斯进行文本分类</a><br><a href="http://www.ruanyifeng.com/blog/2013/12/naive_bayes_classifier.html" target="_blank" rel="external">朴素贝叶斯分类器的应用</a> </p>
-</blockquote>
+<p>为了方便记忆这四个单词，可采取如下方法：<code>Positive/Negative</code>指的是预测的结果，如果预测准确，前面加上一个True（真）；预测错了的话就是False（假）。此外，由混淆矩阵又引出了以下两个概念（之后会有用到）：</p>
+<ul>
+<li><strong>召回率</strong>：简称为<strong>TPR</strong>，计算公式为<code>TPR=TP/(TP+FN)</code>——所有真实的“1”中，有多少被模型成功选出</li>
+<li><strong>误报率</strong>：简称为<strong>FPR</strong>，计算公式为<code>FPR=FP/(FP+TN)</code>——所有真实的“0”中，有多少被模型误判成1</li>
+</ul>
+<p>假设现在我们已经有了一个预测模型，得到的是每个客户会发生欺诈的概率，同时画出一个关于欺诈概率的频数分布图，如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-609c5f5be169830c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们需要一个<strong>阈值</strong>，来划分欺诈与非欺诈用户。如果为50%，那么概率大于50%的都认为是欺诈用户（再次注意，这里的概率指的是欺诈的概率）；如果阈值调整至70%，原本概率为60%的欺诈客户“张三”，将会被判定为非欺诈。<strong>因此，阈值的选取至关重要！</strong></p>
+<p>我们可以把原样本的欺诈/非欺诈客户分开，单独画频数分布图。对于欺诈客户的概率分布，我们给定一个评判的标准（阈值），则左侧灰色部分为FN（欺诈用户漏网了，认为是好人），右侧阴影部分为TP（本身为欺诈，认定为欺诈）。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-7a7a058bd77a8729.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们发现，无论阈值标准线往左往右移动，势必会导致TP(被正确判断的欺诈用户)与TN（被正确判断的非欺诈用户）一方增大与一方减小。这样也正解释了风控力度的大小。<strong>阈值标准线越往左，风险控制越苛刻，漏网之鱼（FN）就越小，但与此同时非欺诈客户量（TN）也越小，原本正常的客户被误判为欺诈（FP）的也越多。</strong></p>
+<h2 id="【ROC与AUC】"><a href="#【ROC与AUC】" class="headerlink" title="【ROC与AUC】"></a>【ROC与AUC】</h2><p>那么阈值究竟这么取比较好呢？这其实是个很有考量的技术活。还记得我们之前提及的召回率（TPR）与误报率（FPR）么。在给定TPR的情况下，FPR越小，说明误判的“好人”越少；同理，在给定FPR（能接受一定好人误判的）的情况下，如果TPR越大，说明抓出来的“坏人”也越多。</p>
+<p>假如阈值取0.6，我们把大于0.6的标记为1（违约），小于0.6的标记为0（正常），同时可以计算出TPR与FPR。同理，如果阈值换成了0.5，我们又得到一组（TPR2，FPR2）。<strong>于是，我们以FPR为横坐标，TPR为纵坐标，把不同的点连成一条曲线，就是ROC曲线。</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-5437b6e564ceed32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 400px;"></p>
+<p>其实TPR与FPR是正相关的，也就是说：正确判断出“1”的数量增加，必然会付出代价（误判为“1”的FP也会增加）,ROC曲线上也能反映出这种变化趋势，从△TPR&gt;△FPR到△TPR&lt;△FPR。<font color="#FF0000">所以这里就回答了我们之前提出的问题：理想的阈值应该取△TPR=△FPR时所对应的阈值。</font></p>
+<p>当我们有2个模型，画出了两条ROC曲线时，可以利用ROC曲线下的面积，即<strong>AUC或者C-统计量</strong>，来判断模型的效果。AUC越高，说明模型的分辨效果越好。</p>
+<h2 id="【提升图与洛伦兹曲线】"><a href="#【提升图与洛伦兹曲线】" class="headerlink" title="【提升图与洛伦兹曲线】"></a>【提升图与洛伦兹曲线】</h2><p>除了ROC曲线与AUC指标，常用的模型评价还有<strong>K-S曲线</strong>，而K-S曲线又是由洛伦兹曲线变换之后得到，所以这里我们结合《信用风险评分卡》书中的例子来介绍相关概念。</p>
+<p>假设10000笔借款，实际发生了700笔坏账。如果我们把10000笔随机分成10等分，那么每等分的坏账应该为70笔。</p>
+<p>再假设我们有一个模型。通过这个模型，我们能给出每笔借款可能发生坏账的概率，<strong>将概率从高到低排序。</strong>排名越靠前的，发生坏账的可能性越大。我们对排好序的序列也分成10等分。<strong>那么应该是，越靠前的等份里，包含的坏人应该越多，越靠后的等份里，包含的坏人要更少（好人更多）。一个理想的模型，应该是这个排序与真实的排序是一样的，即，从一个分割点开始，靠前的都是坏人，靠后的都是好人。</strong></p>
+<p>理想是美好的，然而现实是残酷的，我们总会误杀好人，也会漏掉坏人，能做的是把更多的坏人排到越前面。回到“提升图”相关内容，我们对之前排好序且10等份的数据计算各自等份内的违约数、占比与累计占比，如图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-085a06364ee555d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>把每份违约占比（实际与随机即第4与第7列）放到一张柱形图上，即<strong>提升图</strong>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-6a77987b07616dd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 500px;"></p>
+<p>也可以将累计占比（实际与随机即第5与第8列）放到一张曲线上，即<strong>洛伦兹曲线。</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-9553fba362846c37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 500px;"></p>
+<p>有了洛伦兹曲线，我们就可以直观的比较两个模型的优劣了。我们在一张图上画上两个模型的洛伦兹曲线A与B，假定用户群体中真实的欺诈率是40%（即理想的模型中所有的违约用户全部集中在前4个等份）。我们可以看到，模型A识别出88%的违约用户，而B模型只能分离出78%的用户，所以模型A要比模型B效果好。<strong>所以以后我们只要看哪个模型越往“左上角鼓”，效果就越好。</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-a3836b3e2fcbd6bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 400px;"></p>
+<h2 id="【K-S曲线】"><a href="#【K-S曲线】" class="headerlink" title="【K-S曲线】"></a>【K-S曲线】</h2><p>现在我们对“好人”，“坏人”分别画洛伦兹曲线，<strong>这两条曲线的差值，就是K-S曲线。</strong>如下图所示，假定我们选取阈值为20%（即认定概率大于20%的用户为违约用户），则该模型可以挑选出60%的违约用户，但同时会误判8%的“好人”。那么K-S曲线在违约率上的值就是60%-8%=52%。</p>
+<p>K-S曲线主要是验证模型的区分能力，曲线中的最大值就是<strong>K-S统计量</strong>。K-S统计量越大，就越能把“好”“坏”区分开来，模型效果也就越好。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4762054-01c470d9d65425fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" style="width: 600px;"></p>
+<p>我们再深入一层，针对60%与8%这两个数字细想一下：<strong>这60%不正是在设定20%阈值情况下，TPR的定义么。同理，8%对应着FPR。所以K-S曲线实际上就是以10%*k为横坐标，分别以TPR与FPR的值为纵坐标画出的两条曲线的差值。而KS=max(TPR-FPR)即两条曲线的最大差值，当KS最大时，也就是△TPR=△FPR，这不就是我们之前在ROC曲线上找到的最优阈值么？所以无论是ROC曲线还是K-S曲线，其本质上是一样的。</strong></p>
 
       
     </div>
@@ -523,11 +558,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
-            <a href="/tags/NLP/" rel="tag"># NLP</a>
+            <a href="/tags/混淆矩阵/" rel="tag"># 混淆矩阵</a>
           
         </div>
       
@@ -540,8 +573,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/26/《小岛经济学》读书笔记（四）/" rel="next" title="《小岛经济学》读书笔记（四）">
-                <i class="fa fa-chevron-left"></i> 《小岛经济学》读书笔记（四）
+              <a href="/2017/09/09/朴素贝叶斯—-新闻文本分类/" rel="next" title="朴素贝叶斯-新闻文本分类">
+                <i class="fa fa-chevron-left"></i> 朴素贝叶斯-新闻文本分类
               </a>
             
           </div>
@@ -549,10 +582,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/10/如何评价模型的优劣（一）/" rel="prev" title="11月内部建模比赛总结（一）评价风控的标准">
-                11月内部建模比赛总结（一）评价风控的标准 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -567,10 +596,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/09/09/朴素贝叶斯—-新闻文本分类/"
-     data-title="朴素贝叶斯-新闻文本分类"
+        <div class="ds-share flat" data-thread-key="2018/01/10/如何评价模型的优劣（一）/"
+     data-title="11月内部建模比赛总结（一）评价风控的标准"
      data-content=""
-     data-url="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/">
+     data-url="JuniorNi.github.io/2018/01/10/如何评价模型的优劣（一）/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -599,8 +628,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/09/09/朴素贝叶斯—-新闻文本分类/"
-           data-title="朴素贝叶斯-新闻文本分类" data-url="JuniorNi.github.io/2017/09/09/朴素贝叶斯—-新闻文本分类/">
+      <div class="ds-thread" data-thread-key="2018/01/10/如何评价模型的优劣（一）/"
+           data-title="11月内部建模比赛总结（一）评价风控的标准" data-url="JuniorNi.github.io/2018/01/10/如何评价模型的优劣（一）/">
       </div>
     
   </div>
@@ -744,7 +773,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#「朴素贝叶斯」"><span class="nav-number">1.</span> <span class="nav-text">「朴素贝叶斯」</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#「Python实现」"><span class="nav-number">2.</span> <span class="nav-text">「Python实现」</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入停用词"><span class="nav-number">2.1.</span> <span class="nav-text">导入停用词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理，样本生成"><span class="nav-number">2.2.</span> <span class="nav-text">文本处理，样本生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择"><span class="nav-number">2.3.</span> <span class="nav-text">特征选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用选取的特征词构建0-1矩阵"><span class="nav-number">2.4.</span> <span class="nav-text">用选取的特征词构建0-1矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#朴素贝叶斯分类器"><span class="nav-number">2.5.</span> <span class="nav-text">朴素贝叶斯分类器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#「参考资料」"><span class="nav-number">3.</span> <span class="nav-text">「参考资料」</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评价风控（模型）的标准"><span class="nav-number">2.</span> <span class="nav-text">评价风控（模型）的标准</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【混淆矩阵】"><span class="nav-number">2.1.</span> <span class="nav-text">【混淆矩阵】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【ROC与AUC】"><span class="nav-number">2.2.</span> <span class="nav-text">【ROC与AUC】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【提升图与洛伦兹曲线】"><span class="nav-number">2.3.</span> <span class="nav-text">【提升图与洛伦兹曲线】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【K-S曲线】"><span class="nav-number">2.4.</span> <span class="nav-text">【K-S曲线】</span></a></li></ol></li></ol></div>
             
 
           </div>
