@@ -116,7 +116,7 @@
 <meta property="og:url" content="JuniorNi.github.io/2018/04/09/统计学习方法（1）-概论/index.html">
 <meta property="og:site_name" content="We are on the way">
 <meta property="og:description" content="统计学习三要素方法 = 模型 + 策略 +算法。当我们想使用统计学习方法对数据进行建模时，首先考虑要用哪种模型建模(如线性模型)；而策略是在给定模型的假设空间下（如线性函数构成的集合），如何选择最优模型（即模型参数的确定）；算法则是指学习模型的具体计算方法（通常解析解不存在）。">
-<meta property="og:updated_time" content="2018-04-17T13:48:20.239Z">
+<meta property="og:updated_time" content="2018-04-17T14:20:29.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法（1）- 概论">
 <meta name="twitter:description" content="统计学习三要素方法 = 模型 + 策略 +算法。当我们想使用统计学习方法对数据进行建模时，首先考虑要用哪种模型建模(如线性模型)；而策略是在给定模型的假设空间下（如线性函数构成的集合），如何选择最优模型（即模型参数的确定）；算法则是指学习模型的具体计算方法（通常解析解不存在）。">
@@ -469,12 +469,12 @@
 </ul>
 <h2 id="【经验风险最小化与结构风险最小化】"><a href="#【经验风险最小化与结构风险最小化】" class="headerlink" title="【经验风险最小化与结构风险最小化】"></a>【经验风险最小化与结构风险最小化】</h2><p>假设给定一个训练数据集</p>
 <script type="math/tex; mode=display">
-T=\\{(x\_1,y\_1),(x\_2,y\_2),...,(x\_N,y\_N)\\}</script><p>模型$f(X)$关于训练数据集的平均损失称为<strong>经验风险</strong>或<strong>经验损失</strong>，记作$\{R_\{emp\}\}(f)$:</p>
+T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}</script><p>模型$f(X)$关于训练数据集的平均损失称为<strong>经验风险</strong>或<strong>经验损失</strong>，记作${R_{emp}}(f)$:</p>
 <script type="math/tex; mode=display">
-\{R\_\{emp\}\}(f)=\frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i}))}</script><p>损失函数值越小，模型就越好，而我们学习的目标就是选择期望风险最小的模型。根据大数定律，当样本容量$N$ 趋于无穷时，经验风险趋于期望风险（基于全量）。但由于现实中样本数量有限，预估通常并不理想，要对经验风险进行一定的<strong>矫正</strong>。</p>
+{R_{emp}}(f)=\frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i}))}</script><p>损失函数值越小，模型就越好，而我们学习的目标就是选择期望风险最小的模型。根据大数定律，当样本容量$N$ 趋于无穷时，经验风险趋于期望风险（基于全量）。但由于现实中样本数量有限，预估通常并不理想，要对经验风险进行一定的<strong>矫正</strong>。</p>
 <p><strong>结构风险最小化</strong>（structural risk minimization, SRM）是为了防止当样本容量过小产生“过拟合”的解决策略，等价于<strong>正则化</strong> ，是在经验风险基础上加上了表示模型复杂度的正则化项，结构风险的定义是：</p>
 <script type="math/tex; mode=display">
-{R\_{srm}}(f)=\frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i}))}+\lambda J(f)</script><p>其中$J(f)​$ 表示模型的复杂度，模型$f​$ 越复杂，复杂度$J(f)​$ 就越大，表示了对复杂模型的惩罚。</p>
+{R_{srm}}(f)=\frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i}))}+\lambda J(f)</script><p>其中$J(f)​$ 表示模型的复杂度，模型$f​$ 越复杂，复杂度$J(f)​$ 就越大，表示了对复杂模型的惩罚。</p>
 <h1 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h1><p>在模型选择时，不仅要考虑在训练集上的误差，还要考虑对未知数据的预测能力。如果一味追求在训练数据的预测能力，模型的复杂度往往会比真实模型更高，即产生过拟合。模型选择的方法通常有<strong>正则化</strong>与<strong>交叉验证</strong>。这里我们详细的讲一下<strong>“交叉验证”</strong>。</p>
 <p>交叉验证用于给定数据不是很充足的时候，如果样本量相对充足（&gt;1万条），我们一般随机的把数据分成三份，一份训练集（Trainning Set），一份验证集（Validation Set），最后一份测试集（Test Set）。训练集用于训练模型，验证集用于选择模型及其对应的参数，测试集用于最终对学习方法的评估。</p>
 <h2 id="【简单交叉验证】"><a href="#【简单交叉验证】" class="headerlink" title="【简单交叉验证】"></a>【简单交叉验证】</h2><p>首先将样本数据随机分成两部分（70%训练，30%测试），然后用训练集训练模型，在测试集上验证模型与参数。接着，<strong>再将模型打乱</strong>，重新选择训练集与测试集，继续训练和检验模型。最后用损失函数评估最优的模型与参数。</p>
