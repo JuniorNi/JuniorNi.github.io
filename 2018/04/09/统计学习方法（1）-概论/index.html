@@ -116,7 +116,7 @@
 <meta property="og:url" content="JuniorNi.github.io/2018/04/09/统计学习方法（1）-概论/index.html">
 <meta property="og:site_name" content="We are on the way">
 <meta property="og:description" content="统计学习三要素方法 = 模型 + 策略 +算法。当我们想使用统计学习方法对数据进行建模时，首先考虑要用哪种模型建模(如线性模型)；而策略是在给定模型的假设空间下（如线性函数构成的集合），如何选择最优模型（即模型参数的确定）；算法则是指学习模型的具体计算方法（通常解析解不存在）。">
-<meta property="og:updated_time" content="2018-04-17T14:22:39.498Z">
+<meta property="og:updated_time" content="2018-04-17T14:41:43.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法（1）- 概论">
 <meta name="twitter:description" content="统计学习三要素方法 = 模型 + 策略 +算法。当我们想使用统计学习方法对数据进行建模时，首先考虑要用哪种模型建模(如线性模型)；而策略是在给定模型的假设空间下（如线性函数构成的集合），如何选择最优模型（即模型参数的确定）；算法则是指学习模型的具体计算方法（通常解析解不存在）。">
@@ -481,7 +481,18 @@ T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}</script><p>模型$f(X)$关于训练数�
 <h2 id="【S折交叉验证】"><a href="#【S折交叉验证】" class="headerlink" title="【S折交叉验证】"></a>【S折交叉验证】</h2><p>将样本数据随机分成S个互不相交且大小相同的子集，每次随机的选择S-1份最为训练集，剩下的一份做测试集。<strong>将这一过程可能的S种选择重复进行</strong>，最后平均误差最小的模型<strong>（充分利用了所有样本）</strong>。</p>
 <h2 id="【留一交叉验证】"><a href="#【留一交叉验证】" class="headerlink" title="【留一交叉验证】"></a>【留一交叉验证】</h2><p>就是S折交叉验证的特殊情况，S等于样本数N，仅留下1个样本用于测试<strong>（即留一）</strong>，通常用于N小于50的情况下。</p>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>在<code>Hexo-Next</code>中输入数学公式还是遇到了麻烦，要注意的是：在markdown语法中下划线<code>_</code>代表斜体，而mathjax中的<code>_</code>表示下标，所以使用下标<code>_</code>时，一定要在前面加个反斜杠<code>\_</code>，否则无法解析。</p>
-<p><strong>参考资料</strong></p>
+<p><strong><font color="#FF0000">更新（最佳决绝方案，且不用考虑下划线<code>_</code>的问题）</font></strong></p>
+<p><strong>第一步：使用Kramed代替 Marked</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">uninstall</span> hexo-renderer-marked <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-renderer-kramed <span class="comment">--save</span></div></pre></td></tr></table></figure></p>
+<p><strong>第二步：停止使用 hexo-math</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">uninstall</span> hexo-math <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-renderer-mathjax <span class="comment">--save</span></div></pre></td></tr></table></figure></p>
+<p><strong>第三步：更新 Mathjax 的 CDN 链接</strong><br>首先打开<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code>,然后把<code>&lt;script&gt;</code>更改为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p><strong>第四步：更改默认转义规则</strong><br>因为 hexo 默认的转义规则会将一些字符进行转义，所以我们需要对默认的规则进行修改。先找到<code>../node_modules/kramed/lib/rules/inline.js</code>文件，<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 把</div><div class="line">escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</div><div class="line"># 更改为：</div><div class="line">escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</div><div class="line"></div><div class="line"># 再把</div><div class="line">em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</div><div class="line"># 更改为：</div><div class="line">em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</div></pre></td></tr></table></figure></p>
+<p><strong>第五步：开启mathjax</strong><br>在主题<code>_config.yml</code>中开启<code>Mathjax</code>，即修改如下代码：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">mathjax:</span></div><div class="line"><span class="attr">    enable:</span> <span class="literal">true</span></div></pre></td></tr></table></figure></p>
+<p>并在博客中开启<code>Mathjax</code>，即添加以下内容：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">title:</span> Testing Mathjax with Hexo</div><div class="line"><span class="attr">category:</span> Uncategorized</div><div class="line"><span class="attr">date:</span> <span class="number">2017</span>/<span class="number">05</span>/<span class="number">03</span></div><div class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure></p>
+<p><strong>详细可参考</strong></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/u014630987/article/details/78670258" target="_blank" rel="external">如何在 hexo 中支持 Mathjax？</a></p>
+</blockquote>
+<p><strong>其余参考资料</strong></p>
 <blockquote>
 <p><a href="http://daniellaah.github.io/2016/Mathmatical-Formula-within-Markdown.html" target="_blank" rel="external">如何在Hexo博客中插入数学公式</a><br><a href="http://www.befuncool.com/2016/11/20/Hexo-NexT%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8mathjax%E8%BE%93%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" target="_blank" rel="external">Hexo-NexT主题使用mathjax输入数学公式注意事项</a><br><a href="http://bennychen.me/mathjax.html" target="_blank" rel="external">hexo在Next主题下输入数学公式</a></p>
 </blockquote>
@@ -766,7 +777,7 @@ T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}</script><p>模型$f(X)$关于训练数�
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.1k字</span>
+  <span class="post-count">博客全站共20.4k字</span>
 </div>
 
 <script>
