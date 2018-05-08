@@ -4,19 +4,43 @@
 
     
   <url>
-    <loc>JuniorNi.github.io/2018/04/09/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%EF%BC%881%EF%BC%89-%E6%A6%82%E8%AE%BA/</loc>
-    <lastmod>2018-04-17T14:44:22.067Z</lastmod>
+    <loc>JuniorNi.github.io/2018/05/01/Logistic-Regression-%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2018-05-08T22:33:41.614Z</lastmod>
     <data>
         <display>
-        <title>统计学习方法（1）- 概论</title>
-        <pubTime>2018-04-09T12:42:19.000Z</pubTime>
+        <title>Logistic Regression 模型</title>
+        <pubTime>2018-05-01T14:03:58.000Z</pubTime>
         
+        <tag>机器学习</tag>
+         
         <tag>统计学习方法</tag>
          
          
            
              
-              <breadCrumb title="读书笔记" url="JuniorNi.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+              <breadCrumb title="机器学习" url="JuniorNi.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>JuniorNi.github.io/2018/04/09/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%EF%BC%881%EF%BC%89-%E6%A6%82%E8%AE%BA/</loc>
+    <lastmod>2018-05-01T14:05:39.189Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法（1）- 概论</title>
+        <pubTime>2018-04-09T12:42:19.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>统计学习方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="JuniorNi.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
