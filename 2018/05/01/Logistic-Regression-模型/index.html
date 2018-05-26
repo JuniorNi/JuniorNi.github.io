@@ -131,7 +131,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4762054-2bacd7404be072b8.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4762054-5aacdcdb477f01c3.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4762054-56799739aee9fd8b.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-05-09T14:33:16.557Z">
+<meta property="og:updated_time" content="2018-05-22T21:49:21.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logistic Regression 模型">
 <meta name="twitter:description" content="基本原理
@@ -553,7 +553,7 @@ J(\theta) = -Y\bullet logh_{\theta}(X) - (E-Y)\bullet log(E-h_{\theta}(X))</scri
 <p>其中$h$与$error$均为数值，没有矩阵运算。</p>
 <p><strong>可视化</strong><br><img src="https://upload-images.jianshu.io/upload_images/4762054-5aacdcdb477f01c3.gif?imageMogr2/auto-orient/strip" style="width: 400px;"></p>
 <p>虽然每次迭代的复杂度小的多（仅使用一个样本点），但同时使得最后的分类效果不如梯度上升算法，于是我们对随机梯度算法进行改进。</p>
-<h2 id="改进随机梯度上升"><a href="#改进随机梯度上升" class="headerlink" title="改进随机梯度上升"></a>改进随机梯度上升</h2><p>每次迭代式减小步长$\alpha$ ，是算法参数尽可能收敛<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stocGradAscent1</span><span class="params">(dataMat, classLabels, history_weight, numIter=<span class="number">150</span>)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    改进的随机梯度上升算法</div><div class="line">    """</div><div class="line">    dataMatrix = array(dataMat)</div><div class="line">    m,n = shape(dataMatrix)</div><div class="line">    weights = ones(n)                                           <span class="comment">#初始化为单位矩阵</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(numIter):</div><div class="line">        dataIndex = list(range(m))</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">            alpha = <span class="number">4</span>/(<span class="number">1.0</span>+j+i)+<span class="number">0.0001</span>                          <span class="comment">#步长递减，但是由于常数存在，所以不会变成0</span></div><div class="line">            randIndex = int(random.uniform(<span class="number">0</span>,len(dataIndex)))   <span class="comment">#总算是随机了</span></div><div class="line">            <span class="comment">#print(j,i,randIndex,dataIndex,dataIndex[randIndex])</span></div><div class="line">            h = sigmoid(sum(dataMatrix[randIndex]*weights))</div><div class="line">            error = classLabels[randIndex] - h</div><div class="line">            weights = weights + alpha * error * dataMatrix[randIndex]</div><div class="line">            history_weight.append(copy(weights))</div><div class="line">            <span class="keyword">del</span>(dataIndex[randIndex])                           <span class="comment">#删除这个样本，以后就不会选到了</span></div><div class="line">    <span class="keyword">return</span> weights</div></pre></td></tr></table></figure></p>
+<h2 id="改进随机梯度上升"><a href="#改进随机梯度上升" class="headerlink" title="改进随机梯度上升"></a>改进随机梯度上升</h2><p>每次迭代式减小步长$\alpha$ ，使算法参数尽可能收敛<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stocGradAscent1</span><span class="params">(dataMat, classLabels, history_weight, numIter=<span class="number">150</span>)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    改进的随机梯度上升算法</div><div class="line">    """</div><div class="line">    dataMatrix = array(dataMat)</div><div class="line">    m,n = shape(dataMatrix)</div><div class="line">    weights = ones(n)                                           <span class="comment">#初始化为单位矩阵</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(numIter):</div><div class="line">        dataIndex = list(range(m))</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">            alpha = <span class="number">4</span>/(<span class="number">1.0</span>+j+i)+<span class="number">0.0001</span>                          <span class="comment">#步长递减，但是由于常数存在，所以不会变成0</span></div><div class="line">            randIndex = int(random.uniform(<span class="number">0</span>,len(dataIndex)))   <span class="comment">#总算是随机了</span></div><div class="line">            <span class="comment">#print(j,i,randIndex,dataIndex,dataIndex[randIndex])</span></div><div class="line">            h = sigmoid(sum(dataMatrix[randIndex]*weights))</div><div class="line">            error = classLabels[randIndex] - h</div><div class="line">            weights = weights + alpha * error * dataMatrix[randIndex]</div><div class="line">            history_weight.append(copy(weights))</div><div class="line">            <span class="keyword">del</span>(dataIndex[randIndex])                           <span class="comment">#删除这个样本，以后就不会选到了</span></div><div class="line">    <span class="keyword">return</span> weights</div></pre></td></tr></table></figure></p>
 <p><strong>可视化</strong><br><img src="https://upload-images.jianshu.io/upload_images/4762054-56799739aee9fd8b.gif?imageMogr2/auto-orient/strip" style="width: 400px;"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
 <li>形式简单，模型的可解释性非常好。从特征的权重可以看到不同的特征对最后结果的影响。</li>
@@ -616,6 +616,10 @@ J(\theta) = -Y\bullet logh_{\theta}(X) - (E-Y)\bullet log(E-h_{\theta}(X))</scri
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/22/决策树之必知必会/" rel="prev" title="决策树之必知必会">
+                决策树之必知必会 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -712,7 +716,7 @@ J(\theta) = -Y\bullet logh_{\theta}(X) - (E-Y)\bullet log(E-h_{\theta}(X))</scri
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -852,7 +856,7 @@ J(\theta) = -Y\bullet logh_{\theta}(X) - (E-Y)\bullet log(E-h_{\theta}(X))</scri
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.0k字</span>
+  <span class="post-count">博客全站共25.9k字</span>
 </div>
 
 <script>
