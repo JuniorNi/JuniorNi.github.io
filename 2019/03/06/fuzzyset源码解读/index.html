@@ -1,0 +1,1216 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="baidu-site-verification" content="KycWPtW5ae" />
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="true" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Neucha:300,300italic,400,400italic,700,700italic|Neucha:300,300italic,400,400italic,700,700italic|Neucha:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="分词,模糊匹配," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="起因最近懒癌犯的有点长，学了一些东西正好再系统梳理下。
+之前需要对大量字符串进行模糊匹配，网上查了查发现fuzzyset第三方库刚好满足我的需求，而且原理简单（核心代码只有100行不到！）。但是由于业务自身需求，需要对源码进行一定的修改，这里记录下对源码的学习，方便自己以后查阅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fuzzyset源码解读">
+<meta property="og:url" content="JuniorNi.github.io/2019/03/06/fuzzyset源码解读/index.html">
+<meta property="og:site_name" content="We are on the way">
+<meta property="og:description" content="起因最近懒癌犯的有点长，学了一些东西正好再系统梳理下。
+之前需要对大量字符串进行模糊匹配，网上查了查发现fuzzyset第三方库刚好满足我的需求，而且原理简单（核心代码只有100行不到！）。但是由于业务自身需求，需要对源码进行一定的修改，这里记录下对源码的学习，方便自己以后查阅。">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4762054-8939fce90f5ddbc7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-03-07T15:15:27.365Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="fuzzyset源码解读">
+<meta name="twitter:description" content="起因最近懒癌犯的有点长，学了一些东西正好再系统梳理下。
+之前需要对大量字符串进行模糊匹配，网上查了查发现fuzzyset第三方库刚好满足我的需求，而且原理简单（核心代码只有100行不到！）。但是由于业务自身需求，需要对源码进行一定的修改，这里记录下对源码的学习，方便自己以后查阅。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4762054-8939fce90f5ddbc7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="JuniorNi.github.io/2019/03/06/fuzzyset源码解读/"/>
+
+
+
+
+
+  <title> fuzzyset源码解读 | We are on the way </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cfdbd843b939e618bc70bd28967926af";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">We are on the way</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+ 
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2019/03/06/fuzzyset源码解读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junior Ni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/juanfu3.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="We are on the way">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                fuzzyset源码解读
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T19:55:08+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/06/fuzzyset源码解读/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/03/06/fuzzyset源码解读/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/06/fuzzyset源码解读/" class="leancloud_visitors" data-flag-title="fuzzyset源码解读">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="https://upload-images.jianshu.io/upload_images/4762054-8939fce90f5ddbc7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" rel="gallery_cjsyry7rj001pv8cptf8n2cg2"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://upload-images.jianshu.io/upload_images/4762054-8939fce90f5ddbc7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近懒癌犯的有点长，学了一些东西正好再系统梳理下。</p>
+<p>之前需要对大量字符串进行<strong>模糊匹配</strong>，网上查了查发现<strong>fuzzyset</strong>第三方库刚好满足我的需求，而且原理简单（核心代码只有100行不到！）。但是由于业务自身需求，需要对源码进行一定的修改，这里记录下对源码的学习，方便自己以后查阅。</p>
+<a id="more"></a>
+<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><p><strong>Q：</strong> <strong><font color="#FF0000">如何度量两个字符串之间的相似度或者差异程度？</font></strong><br><code>Levenshtein距离</code>便是一种方法，又叫编辑距离（Edit Distance），是指两个字符串之间，通过<strong>替换</strong>、<strong>插入</strong>、<strong>删除</strong>的方式（每次仅限编辑一个字符），从一个转换成另一个所需的最小编辑次数。</p>
+<p>如将<code>abcd</code>一字转成<code>acdb</code>可以有很多种方法：</p>
+<blockquote>
+<p>abcd-&gt;accd-&gt;acdd-&gt;acdb<br>abcd-&gt;acd-&gt;acdb</p>
+</blockquote>
+<p>最小次数显然是第二种，所以从<code>abcd</code>转成<code>acdb</code>的Levenshtein距离就是2，具体如何求解可通过动态规划的思想来完成，这里不深入下去。</p>
+<h1 id="fuzzyset算法思想"><a href="#fuzzyset算法思想" class="headerlink" title="fuzzyset算法思想"></a>fuzzyset算法思想</h1><p>通过n-grams模型把字符串简单拆分，计算两个字符串之间的余弦相似度。若选择use_levenshtein（需要手动安装<a href="https://pypi.org/project/python-Levenshtein/" target="_blank" rel="external">python-Levenshtein</a> 包），则在余弦相似度的基础上再通过Levenshtein距离计算出一个新的得分，取得分最高的字符串输出（具体细节实现与技巧优化见源码分析）</p>
+<h1 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h1><h2 id="1-切分字符串"><a href="#1-切分字符串" class="headerlink" title="1. 切分字符串"></a>1. 切分字符串</h2><p>给定一个英文单词(string)，是如何切分的？作者给了例子说明，比如有个字符串<code>michaelich</code>，我们设置gram_size=3，则切分成如下形式：</p>
+<blockquote>
+<p>‘-mi’<br>‘mic’<br>‘ich’<br>‘cha’<br>‘hae’<br>‘ael’<br>‘eli’<br>‘lic’<br>‘ich’<br>‘ch-‘</p>
+</blockquote>
+<p>对应代码也容易懂，同时为了节省内存，产生了一个生成器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_iterate_grams</span><span class="params">(value, gram_size=<span class="number">2</span>)</span>:</span></div><div class="line">    simplified = <span class="string">'-'</span> + _non_word_re.sub(<span class="string">''</span>, value.lower()) + <span class="string">'-'</span></div><div class="line">    len_diff = gram_size - len(simplified)</div><div class="line">    <span class="keyword">if</span> len_diff &gt; <span class="number">0</span>:</div><div class="line">        simplified += <span class="string">'-'</span> * len_diff</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(simplified) - gram_size + <span class="number">1</span>):</div><div class="line">        <span class="keyword">yield</span> simplified[i:i + gram_size]</div></pre></td></tr></table></figure>
+<p>接着，作者对每个被切分出来的最小单元进行<strong>词频统计</strong><code>(text=&#39;a-CAc9f&#39;)</code>，形式如下：</p>
+<blockquote>
+<p>{‘-a’: 1, ‘ac’: 2, ‘ca’: 1, ‘c9’: 1, ‘9f’: 1, ‘f-‘: 1}</p>
+</blockquote>
+<p>代码easy<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_gram_counter</span><span class="params">(value, gram_size=<span class="number">2</span>)</span>:</span></div><div class="line">    result = collections.defaultdict(int)</div><div class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> _iterate_grams(value, gram_size):</div><div class="line">        result[value] += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> result</div></pre></td></tr></table></figure></p>
+<h2 id="2-添加语料库-字符串"><a href="#2-添加语料库-字符串" class="headerlink" title="2. 添加语料库(字符串)"></a>2. 添加语料库(字符串)</h2><p>当我输入一个英文单词(str)，内部发生了什么？来看代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, iterable=<span class="params">()</span>, gram_size_lower=<span class="number">2</span>, gram_size_upper=<span class="number">3</span>, use_levenshtein=True)</span>:</span></div><div class="line">    self.exact_set = &#123;&#125;</div><div class="line">    self.match_dict = collections.defaultdict(list)</div><div class="line">    self.items = &#123;&#125;</div><div class="line">    self.use_levenshtein = use_levenshtein</div><div class="line">    self.gram_size_lower = gram_size_lower</div><div class="line">    self.gram_size_upper = gram_size_upper</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(gram_size_lower, gram_size_upper + <span class="number">1</span>):</div><div class="line">        self.items[i] = []</div><div class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> iterable:</div><div class="line">        self.add(value)</div></pre></td></tr></table></figure>
+<p>这里只是初始化，那我们具体看看<code>add()</code>与<code>__add()</code>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, value)</span>:</span></div><div class="line">    lvalue = value.lower()</div><div class="line">    <span class="keyword">if</span> lvalue <span class="keyword">in</span> self.exact_set:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(self.gram_size_lower, self.gram_size_upper + <span class="number">1</span>):</div><div class="line">        self.__add(value, i)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__add</span><span class="params">(self, value, gram_size)</span>:</span></div><div class="line">    lvalue = value.lower()</div><div class="line">    items = self.items[gram_size]   <span class="comment">#这里要注意：items的改动会传递给 self.items</span></div><div class="line">    idx = len(items)</div><div class="line">    items.append(<span class="number">0</span>)</div><div class="line">    grams = _gram_counter(lvalue, gram_size)</div><div class="line">    norm = math.sqrt(sum(x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> grams.values()))</div><div class="line">    <span class="keyword">for</span> gram, occ <span class="keyword">in</span> grams.items():</div><div class="line">        self.match_dict[gram].append((idx, occ))</div><div class="line">    items[idx] = (norm, lvalue)</div><div class="line">    self.exact_set[lvalue] = value</div></pre></td></tr></table></figure>
+<p>如果默认<code>n-grams</code>是从2到3的情况下：</p>
+<ul>
+<li><p><strong>self.items</strong>会存放小写的英文字符串(输入)与对应被<code>2-grams</code>与<code>3-grams</code>切分后的模，形式如下:</p>
+<blockquote>
+<p>{    2: [(3.0 , ‘a-cac9f’) , (., .) , (., .)],<br>   3: [(2.449489742783178 , ‘a-cac9f’) , (. , .), (. , .)]}</p>
+</blockquote>
+</li>
+<li><p><strong>self.match_dict</strong>形式如下：</p>
+<blockquote>
+<p>{    ‘-a’: [(0, 1)],<br>   ‘ac’: [(0, 2)],        #注意:若之后另一个单词被同样切出’ac’,这里可能为 ‘ac’:[(0,2), (1,1)]<br>   ‘ca’: [(0, 1)],<br>   ‘c9’: [(0, 1)],<br>   ‘9f’: [(0, 1)],<br>   ‘f-‘: [(0, 1)],<br>   ‘-ac’: [(0, 1)],<br>   ‘aca’: [(0, 1)],<br>   ‘cac’: [(0, 1)],<br>   ‘ac9’: [(0, 1)],<br>   ‘c9f’: [(0, 1)],<br>   ‘9f-‘: [(0, 1)]}</p>
+</blockquote>
+</li>
+<li><p><strong>self.exact_set</strong>为原输入的英文字符串与小写之后的字符串形式，如：</p>
+<blockquote>
+<p>{‘a-cac9f’: ‘a-CAc9f’}</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-模糊匹配"><a href="#3-模糊匹配" class="headerlink" title="3. 模糊匹配"></a>3. 模糊匹配</h2><p>我们来看一下是如何对目标字符串进行模糊匹配的，主要关注<code>__get()方法</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_distance</span><span class="params">(str1, str2)</span>:</span></div><div class="line">    distance = Levenshtein.distance(str1, str2)</div><div class="line">    <span class="keyword">if</span> len(str1) &gt; len(str2):</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span> - float(distance) / len(str1)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span> - float(distance) / len(str2)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__get</span><span class="params">(self, value, gram_size)</span>:</span></div><div class="line">    lvalue = value.lower()</div><div class="line">    matches = collections.defaultdict(float)</div><div class="line">    grams = _gram_counter(lvalue, gram_size)</div><div class="line">    items = self.items[gram_size]</div><div class="line">    norm = math.sqrt(sum(x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> grams.values()))</div><div class="line"></div><div class="line">    <span class="keyword">for</span> gram, occ <span class="keyword">in</span> grams.items(): <span class="comment">#(切分最小单元，出现次数)</span></div><div class="line">        <span class="keyword">for</span> idx, other_occ <span class="keyword">in</span> self.match_dict.get(gram, ()):    <span class="comment">#属于第几个输入字符串，出现次数</span></div><div class="line">            matches[idx] += occ * other_occ   </div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> matches:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="comment"># cosine similarity</span></div><div class="line">    results = [(match_score / (norm * items[idx][<span class="number">0</span>]), items[idx][<span class="number">1</span>])</div><div class="line">               <span class="keyword">for</span> idx, match_score <span class="keyword">in</span> matches.items()]</div><div class="line">    results.sort(reverse=<span class="keyword">True</span>, key=operator.itemgetter(<span class="number">0</span>))</div><div class="line"></div><div class="line">    <span class="keyword">if</span> self.use_levenshtein:</div><div class="line">        results = [(_distance(matched, lvalue), matched)</div><div class="line">                   <span class="keyword">for</span> _, matched <span class="keyword">in</span> results[:<span class="number">50</span>]]</div><div class="line">        results.sort(reverse=<span class="keyword">True</span>, key=operator.itemgetter(<span class="number">0</span>))</div><div class="line"></div><div class="line">    <span class="keyword">return</span> [(score, self.exact_set[lval]) <span class="keyword">for</span> score, lval <span class="keyword">in</span> results</div><div class="line">            <span class="keyword">if</span> score == results[<span class="number">0</span>][<span class="number">0</span>]]</div></pre></td></tr></table></figure>
+<p>先对目标字符串进行同样的切分方式，再分别与每个输入字符串进行“点乘”<code>•</code>，并计算出余弦相似度。</p>
+<p>我们看到，若不使用<code>Levenshtein距离</code>，最后输出的是余弦相似度取值最大的一组或多组字符串。若使用<code>Levenshtein距离</code>，首先为了减少运算量，<strong>只取</strong>余弦相似度排名前50个字符串，再然后对其计算<code>Levenshtein距离</code>，并通过简单的运算得出另一个分值，最后输出得分最高的一组或多组字符串。</p>
+<p>后续的源码不难，但还是一并贴出来比较方便看<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(<span class="keyword">self</span>, key, default=None)</span></span>:</div><div class="line">    <span class="symbol">try:</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>[key]    <span class="comment"># 调用 __getitem__</span></div><div class="line">    except <span class="symbol">KeyError:</span></div><div class="line">        <span class="keyword">return</span> default</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(<span class="keyword">self</span>, value)</span></span>:</div><div class="line">    lvalue = value.lower()</div><div class="line">    result = <span class="keyword">self</span>.exact_set.get(lvalue)   <span class="comment">#若完全一样,返回(1,原词语)</span></div><div class="line">    <span class="keyword">if</span> <span class="symbol">result:</span></div><div class="line">        <span class="keyword">return</span> [(<span class="number">1</span>, result)]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="keyword">self</span>.gram_size_upper, <span class="keyword">self</span>.gram_size_lower - <span class="number">1</span>, -<span class="number">1</span>):</div><div class="line">        results = <span class="keyword">self</span>.__get(value, i)</div><div class="line">        <span class="keyword">if</span> results is <span class="keyword">not</span> <span class="symbol">None:</span></div><div class="line">            <span class="keyword">return</span> results</div><div class="line">    raise KeyError(value)</div></pre></td></tr></table></figure></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
+<p><a href="https://github.com/axiak/fuzzyset" target="_blank" rel="external">官方github</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分词/" rel="tag"># 分词</a>
+          
+            <a href="/tags/模糊匹配/" rel="tag"># 模糊匹配</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/决策树之必知必会/" rel="next" title="决策树之必知必会">
+                <i class="fa fa-chevron-left"></i> 决策树之必知必会
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2019/03/06/fuzzyset源码解读/"
+     data-title="fuzzyset源码解读"
+     data-content=""
+     data-url="JuniorNi.github.io/2019/03/06/fuzzyset源码解读/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/03/06/fuzzyset源码解读/"
+           data-title="fuzzyset源码解读" data-url="JuniorNi.github.io/2019/03/06/fuzzyset源码解读/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/juanfu3.jpeg"
+               alt="Junior Ni" />
+          <p class="site-author-name" itemprop="name">Junior Ni</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/juniorni" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/b2bab11b47c2" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰的个人博客" target="_blank">阮一峰的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的官方网站" target="_blank">廖雪峰的官方网站</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景知识"><span class="nav-number">2.</span> <span class="nav-text">背景知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fuzzyset算法思想"><span class="nav-number">3.</span> <span class="nav-text">fuzzyset算法思想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码解析"><span class="nav-number">4.</span> <span class="nav-text">源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-切分字符串"><span class="nav-number">4.1.</span> <span class="nav-text">1. 切分字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-添加语料库-字符串"><span class="nav-number">4.2.</span> <span class="nav-text">2. 添加语料库(字符串)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-模糊匹配"><span class="nav-number">4.3.</span> <span class="nav-text">3. 模糊匹配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Junior Ni</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共27.2k字</span>
+</div>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"junior"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("vFSc1AMjOK8F5fk2Qv8eSVxE-gzGzoHsz", "hJ2gtJmyceyFMp2NtrMEDoCG");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
