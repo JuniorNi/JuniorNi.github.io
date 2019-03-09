@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>JuniorNi.github.io/2019/03/09/%E6%96%B0%E8%AF%8D%E5%8F%91%E7%8E%B0-1-%E2%80%94%E2%80%94%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
+    <lastmod>2019-03-09T04:59:44.284Z</lastmod>
+    <data>
+        <display>
+        <title>新词发现(1)——核心代码解读</title>
+        <pubTime>2019-03-09T04:01:49.000Z</pubTime>
+        
+        <tag>分词</tag>
+         
+         
+           
+             
+              <breadCrumb title="NLP" url="JuniorNi.github.io/categories/NLP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>JuniorNi.github.io/2019/03/06/fuzzyset%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
-    <lastmod>2019-03-07T15:15:27.365Z</lastmod>
+    <lastmod>2019-03-07T15:20:24.397Z</lastmod>
     <data>
         <display>
         <title>fuzzyset源码解读</title>
