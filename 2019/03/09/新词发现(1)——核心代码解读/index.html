@@ -113,12 +113,12 @@
 <meta name="description" content="主要思想是利用三个指标，即频数、凝固度（取对数之后就是点互信息）与自由度（边界熵）来判断一个片段是否成词，并参考了苏神的代码，详见参考部分。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="新词发现(1)——核心代码解读">
-<meta property="og:url" content="JuniorNi.github.io/2019/03/09/新词发现-1-——核心代码解读/index.html">
+<meta property="og:url" content="JuniorNi.github.io/2019/03/09/新词发现(1)——核心代码解读/index.html">
 <meta property="og:site_name" content="We are on the way">
 <meta property="og:description" content="主要思想是利用三个指标，即频数、凝固度（取对数之后就是点互信息）与自由度（边界熵）来判断一个片段是否成词，并参考了苏神的代码，详见参考部分。">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4762054-75c2f2c5daa3307d.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4762054-e7e6a7b71f6f0014.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-03-09T07:11:37.124Z">
+<meta property="og:updated_time" content="2019-03-11T13:51:05.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="新词发现(1)——核心代码解读">
 <meta name="twitter:description" content="主要思想是利用三个指标，即频数、凝固度（取对数之后就是点互信息）与自由度（边界熵）来判断一个片段是否成词，并参考了苏神的代码，详见参考部分。">
@@ -150,7 +150,7 @@
 
 
 
-  <link rel="canonical" href="JuniorNi.github.io/2019/03/09/新词发现-1-——核心代码解读/"/>
+  <link rel="canonical" href="JuniorNi.github.io/2019/03/09/新词发现(1)——核心代码解读/"/>
 
 
 
@@ -341,7 +341,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2019/03/09/新词发现-1-——核心代码解读/">
+    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2019/03/09/新词发现(1)——核心代码解读/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Junior Ni">
@@ -418,8 +418,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/09/新词发现-1-——核心代码解读/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/03/09/新词发现-1-——核心代码解读/" itemprop="commentCount"></span>
+                <a href="/2019/03/09/新词发现(1)——核心代码解读/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/03/09/新词发现(1)——核心代码解读/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -427,7 +427,7 @@
 
           
           
-             <span id="/2019/03/09/新词发现-1-——核心代码解读/" class="leancloud_visitors" data-flag-title="新词发现(1)——核心代码解读">
+             <span id="/2019/03/09/新词发现(1)——核心代码解读/" class="leancloud_visitors" data-flag-title="新词发现(1)——核心代码解读">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -529,6 +529,10 @@ PMI(x,y) = log_2 \frac {P(x,y)}{p(x)p(y)}</script><p>我们知道，若两个变
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/11/新词发现(2)——基于切分/" rel="prev" title="新词发现(2)——基于切分">
+                新词发现(2)——基于切分 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -542,10 +546,10 @@ PMI(x,y) = log_2 \frac {P(x,y)}{p(x)p(y)}</script><p>我们知道，若两个变
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2019/03/09/新词发现-1-——核心代码解读/"
+        <div class="ds-share flat" data-thread-key="2019/03/09/新词发现(1)——核心代码解读/"
      data-title="新词发现(1)——核心代码解读"
      data-content=""
-     data-url="JuniorNi.github.io/2019/03/09/新词发现-1-——核心代码解读/">
+     data-url="JuniorNi.github.io/2019/03/09/新词发现(1)——核心代码解读/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -574,8 +578,8 @@ PMI(x,y) = log_2 \frac {P(x,y)}{p(x)p(y)}</script><p>我们知道，若两个变
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2019/03/09/新词发现-1-——核心代码解读/"
-           data-title="新词发现(1)——核心代码解读" data-url="JuniorNi.github.io/2019/03/09/新词发现-1-——核心代码解读/">
+      <div class="ds-thread" data-thread-key="2019/03/09/新词发现(1)——核心代码解读/"
+           data-title="新词发现(1)——核心代码解读" data-url="JuniorNi.github.io/2019/03/09/新词发现(1)——核心代码解读/">
       </div>
     
   </div>
@@ -624,7 +628,7 @@ PMI(x,y) = log_2 \frac {P(x,y)}{p(x)p(y)}</script><p>我们知道，若两个变
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -764,7 +768,7 @@ PMI(x,y) = log_2 \frac {P(x,y)}{p(x)p(y)}</script><p>我们知道，若两个变
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共28.4k字</span>
+  <span class="post-count">博客全站共29.2k字</span>
 </div>
 
 <script>
@@ -1032,6 +1036,26 @@ PMI(x,y) = log_2 \frac {P(x,y)}{p(x)p(y)}</script><p>我们知道，若两个变
 
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

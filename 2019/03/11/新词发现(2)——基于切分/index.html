@@ -94,7 +94,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JuniorNi" />
+  <meta name="keywords" content="NLP," />
 
 
 
@@ -110,15 +110,18 @@
 
 
 
-<meta name="description" content="不忘初心，方得始终">
-<meta property="og:type" content="website">
-<meta property="og:title" content="We are on the way">
-<meta property="og:url" content="JuniorNi.github.io/categories/NLP/index.html">
+<meta name="description" content="还是参考了苏神的系列文章：【中文分词系列】 2. 基于切分的新词发现，感觉作者好厉害，用不同的角度思考问题。原先是从“从语料中判断是否成词即不可切分”的角度出发，现在却反过来思考：若一个片段的内部凝固度低于一定程度时，则这个片段是不是就不成词，因此要被切分开。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="新词发现(2)——基于切分">
+<meta property="og:url" content="JuniorNi.github.io/2019/03/11/新词发现(2)——基于切分/index.html">
 <meta property="og:site_name" content="We are on the way">
-<meta property="og:description" content="不忘初心，方得始终">
+<meta property="og:description" content="还是参考了苏神的系列文章：【中文分词系列】 2. 基于切分的新词发现，感觉作者好厉害，用不同的角度思考问题。原先是从“从语料中判断是否成词即不可切分”的角度出发，现在却反过来思考：若一个片段的内部凝固度低于一定程度时，则这个片段是不是就不成词，因此要被切分开。">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4762054-696bd37432f01e3b.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-03-11T14:00:29.115Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="We are on the way">
-<meta name="twitter:description" content="不忘初心，方得始终">
+<meta name="twitter:title" content="新词发现(2)——基于切分">
+<meta name="twitter:description" content="还是参考了苏神的系列文章：【中文分词系列】 2. 基于切分的新词发现，感觉作者好厉害，用不同的角度思考问题。原先是从“从语料中判断是否成词即不可切分”的角度出发，现在却反过来思考：若一个片段的内部凝固度低于一定程度时，则这个片段是不是就不成词，因此要被切分开。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4762054-696bd37432f01e3b.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -146,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="JuniorNi.github.io/categories/NLP/"/>
+  <link rel="canonical" href="JuniorNi.github.io/2019/03/11/新词发现(2)——基于切分/"/>
 
 
 
 
 
-  <title> 分类: NLP | We are on the way </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 新词发现(2)——基于切分 | We are on the way </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -187,7 +190,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -327,103 +330,223 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        NLP
-        <small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/11/新词发现(2)——基于切分/" itemprop="url">
-              
-                <span itemprop="name">新词发现(2)——基于切分</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-11T21:54:32+08:00"
-              content="2019-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/09/新词发现(1)——核心代码解读/" itemprop="url">
-              
-                <span itemprop="name">新词发现(1)——核心代码解读</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-09T12:01:49+08:00"
-              content="2019-03-09" >
-          03-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/06/fuzzyset源码解读/" itemprop="url">
-              
-                <span itemprop="name">fuzzyset源码解读</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-06T19:55:08+08:00"
-              content="2019-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="JuniorNi.github.io/2019/03/11/新词发现(2)——基于切分/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junior Ni">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/juanfu3.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="We are on the way">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                新词发现(2)——基于切分
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T21:54:32+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/11/新词发现(2)——基于切分/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/03/11/新词发现(2)——基于切分/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/11/新词发现(2)——基于切分/" class="leancloud_visitors" data-flag-title="新词发现(2)——基于切分">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>还是参考了苏神的系列文章：<a href="https://spaces.ac.cn/archives/3913" target="_blank" rel="external">【中文分词系列】 2. 基于切分的新词发现</a>，感觉作者好厉害，用不同的角度思考问题。原先是从“从语料中判断是否成词即不可切分”的角度出发，现在却反过来思考：<strong>若一个片段的内部凝固度低于一定程度时，则这个片段是不是就不成词，因此要被切分开。</strong></p>
+<a id="more"></a>
+<p>对比之前的那篇文章：<strong>【新词发现(1)——核心代码解读】</strong>，发现无需计算左邻与右邻信息熵，因此少了很多计算量。我们来看一下代码实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Find_Words</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, min_count=<span class="number">10</span>, min_pmi=<span class="number">0</span>)</span>:</span></div><div class="line">        self.min_count = min_count</div><div class="line">        self.min_pmi = min_pmi</div><div class="line">        self.chars, self.pairs = defaultdict(int), defaultdict(int) <span class="comment">#如果键不存在，那么就用int函数初始化(默认为0)</span></div><div class="line">        self.total = <span class="number">0.</span></div><div class="line">    </div><div class="line">    <span class="comment">#预切断句子，以免得到太多无意义（不是中文、英文、数字）的字符串</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">text_filter</span><span class="params">(self, texts)</span>:</span> </div><div class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> tqdm(texts):</div><div class="line">            <span class="keyword">for</span> t <span class="keyword">in</span> re.split(<span class="string">u'[^\u4e00-\u9fa50-9a-zA-Z]+'</span>, a): </div><div class="line">                <span class="keyword">if</span> t:</div><div class="line">                    <span class="keyword">yield</span> t</div></pre></td></tr></table></figure>
+<p>为了得到有意义的语句，需要去除非中文、英文与数字的字符，并在其位置进行断句。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#计算单字出现频数、相邻两字出现的频数               </span></div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">(self, texts)</span>:</span> </div><div class="line">       <span class="keyword">for</span> text <span class="keyword">in</span> self.text_filter(texts):</div><div class="line">           self.chars[text[<span class="number">0</span>]] += <span class="number">1</span></div><div class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)<span class="number">-1</span>):</div><div class="line">               self.chars[text[i+<span class="number">1</span>]] += <span class="number">1</span>  <span class="comment">#单字</span></div><div class="line">               self.pairs[text[i:i+<span class="number">2</span>]] += <span class="number">1</span>  <span class="comment">#相邻2字</span></div><div class="line">               self.total += <span class="number">1</span></div><div class="line">               </div><div class="line">       self.chars = &#123;i:j <span class="keyword">for</span> i,j <span class="keyword">in</span> self.chars.items() <span class="keyword">if</span> j &gt;= self.min_count&#125; <span class="comment">#最少频数过滤</span></div><div class="line">       self.pairs = &#123;i:j <span class="keyword">for</span> i,j <span class="keyword">in</span> self.pairs.items() <span class="keyword">if</span> j &gt;= self.min_count&#125; <span class="comment">#最少频数过滤</span></div><div class="line">       self.strong_segments = set()</div><div class="line">       <span class="comment">#根据互信息找出比较“密切”的邻字</span></div><div class="line">       <span class="keyword">for</span> i,j <span class="keyword">in</span> self.pairs.items(): </div><div class="line">           _ = log(self.total*j/(self.chars[i[<span class="number">0</span>]]*self.chars[i[<span class="number">1</span>]]))</div><div class="line">           <span class="keyword">if</span> _ &gt;= self.min_pmi:</div><div class="line">               self.strong_segments.add(i)</div></pre></td></tr></table></figure>
+<p>字典<code>chars</code>与<code>pairs</code>中存放单字符与相邻2字符的频数统计情况，并过滤掉出现次数过少的，再通过互信息的计算最后只筛选出“比较密切”的相邻字，同时存放到<code>strong_segments</code>字典中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#根据前述结果来找词语</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_words</span><span class="params">(self, texts)</span>:</span> </div><div class="line">    self.words = defaultdict(int)</div><div class="line">    <span class="keyword">for</span> text <span class="keyword">in</span> self.text_filter(texts):</div><div class="line">        s = text[<span class="number">0</span>]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text)<span class="number">-1</span>):</div><div class="line">            <span class="comment">#如果比较“密切”则不断开</span></div><div class="line">            <span class="keyword">if</span> text[i:i+<span class="number">2</span>] <span class="keyword">in</span> self.strong_segments: </div><div class="line">                s += text[i+<span class="number">1</span>]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="comment">#否则断开，前述片段作为一个词来统计</span></div><div class="line">                self.words[s] += <span class="number">1</span> </div><div class="line">                s = text[i+<span class="number">1</span>]</div><div class="line">    <span class="comment">#最后再次根据频数过滤</span></div><div class="line">    self.words = &#123;i:j <span class="keyword">for</span> i,j <span class="keyword">in</span> self.words.items() <span class="keyword">if</span> j &gt;= self.min_count&#125;</div></pre></td></tr></table></figure>
+<p>这一步就是从之前筛选出的“比较密切”相邻字中，去判断一个片段是否成词。举个例子来说，比如现在有<code>齐天大圣孙悟空</code>，从<code>齐天</code>开始，在不在<code>strong_segments</code>字典中。假设存在，那么这么不切分，继续查找<code>天大</code>、<code>大圣</code>在不在。诶，突然我们发现<code>圣孙</code>不在字典中，那么此处应该被切分，<code>齐天大圣</code>就被切分成了一个单独的词语。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">f = open(<span class="string">'天龙八部.txt'</span>, <span class="string">'r'</span>, encoding=<span class="string">'gbk'</span>, errors=<span class="string">'ignore'</span>)</div><div class="line">s1 = f.read()</div><div class="line">texts = list([s1])</div><div class="line"></div><div class="line">fw = Find_Words(<span class="number">20</span>, <span class="number">1</span>)</div><div class="line">fw.count(texts)</div><div class="line">fw.find_words(texts)</div><div class="line"></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">words = pd.DataFrame(fw.words, index=[<span class="number">0</span>]).T.reset_index()</div><div class="line">words.columns = [<span class="string">'wrd'</span>,<span class="string">'cnt'</span>]</div><div class="line">words = words[words.wrd.apply(len)&gt;<span class="number">1</span>].sort_values(<span class="string">'cnt'</span>, ascending=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<p>最后我们还是在金庸的《天龙八部》上检验下效果</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4762054-696bd37432f01e3b.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/09/新词发现(1)——核心代码解读/" rel="next" title="新词发现(1)——核心代码解读">
+                <i class="fa fa-chevron-left"></i> 新词发现(1)——核心代码解读
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2019/03/11/新词发现(2)——基于切分/"
+     data-title="新词发现(2)——基于切分"
+     data-content=""
+     data-url="JuniorNi.github.io/2019/03/11/新词发现(2)——基于切分/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
           
           </div>
@@ -433,6 +556,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/03/11/新词发现(2)——基于切分/"
+           data-title="新词发现(2)——基于切分" data-url="JuniorNi.github.io/2019/03/11/新词发现(2)——基于切分/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -680,6 +811,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
